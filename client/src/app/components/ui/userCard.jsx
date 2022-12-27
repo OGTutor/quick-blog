@@ -3,7 +3,7 @@ import React from "react";
 const UserCard = () => {
     return (
         <div className="position-absolute top-0 start-0">
-            <div className="container-lt">
+            <div className="container-lt text-center">
                 <div
                     className="card bg-secondary bg-dark"
                     style={{ width: 18 + "rem" }}
@@ -34,11 +34,11 @@ const UserCard = () => {
                             Name of blog
                         </p>
                     </div>
-                    <div className="position-relative ms-5">
+                    <div className="position-relative">
                         <a href="https://www.instagram.com/">
                             <img
                                 src="/images/instagram.png"
-                                className="rounded float-start ms-5 rounded-circle"
+                                className="rounded rounded-circle me-1"
                                 width="30"
                                 height="30"
                                 alt="social"
@@ -47,7 +47,7 @@ const UserCard = () => {
                         <a href="https://www.pinterest.com/">
                             <img
                                 src="/images/pinterest.png"
-                                className="rounded float rounded-circle ms-1"
+                                className="rounded float rounded-circle me-1"
                                 width="30"
                                 height="30"
                                 alt="social"
@@ -56,7 +56,7 @@ const UserCard = () => {
                         <a href="https://github.com/">
                             <img
                                 src="/images/github.png"
-                                className="rounded float rounded-circle ms-1"
+                                className="rounded float rounded-circle me-1"
                                 width="30"
                                 height="30"
                                 alt="social"

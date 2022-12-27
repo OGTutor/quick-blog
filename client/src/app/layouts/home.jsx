@@ -1,12 +1,12 @@
 import React from "react";
 import RandomArticles from "../components/common/articles/randomArticles";
-import UserCard from "../components/ui/userCard";
+import AllArticles from "../components/common/articles/allArticles";
 
 const Home = () => {
     return (
         <>
-            <UserCard />
             <RandomArticles />
+            <AllArticles />
         </>
     );
 };

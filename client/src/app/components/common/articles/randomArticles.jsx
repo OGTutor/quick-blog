@@ -8,16 +8,42 @@ const RandomArticles = () => {
     useEffect(() => {
         API.articles.fetchRandomArticles().then((res) => setArticles(res));
     }, []);
+
     return (
-        <div className="position-relative">
+        <div className="container text-center mt-5">
+            <div className="row">
+                {articles
+                    ? articles.map((a) => (
+                          <div key={a._id} className="col m-2">
+                              <div className="card bg-dark">
+                                  <a href="/">
+                                      <img
+                                          src={a.cover}
+                                          className="card-img-top"
+                                          alt="cover"
+                                      />
+                                  </a>
+                                  <div className="card-body fw-bold">
+                                      <h5 className="text-white">{a.title}</h5>
+                                      <p className="text-secondary font-monospace">
+                                          {displayDate(a.created_at)}
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      ))
+                    : "Loading..."}
+            </div>
+        </div>
+    );
+    /* <div className="position-relative">
             <div
-                id="carouselExampleCaptions"
-                className="carousel slide position-absolute"
+                className="carousel slide position-absolute top-50 end-50 translate-middle-x"
                 style={{
-                    width: "1000px",
+                    maxWidth: "800px",
+                    minWidth: "300px",
                     left: "600px",
-                    top: "20px",
-                    maxWidth: "50%"
+                    top: "20px"
                 }}
             >
                 <div className="carousel-indicators">
@@ -92,8 +118,7 @@ const RandomArticles = () => {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
-        </div>
-    );
+        </div> */
 };
 
 export default RandomArticles;

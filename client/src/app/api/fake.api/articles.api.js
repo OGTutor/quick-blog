@@ -5,7 +5,8 @@ const articles = [
         pageId: "67rdca3eeb7f6fgeed471815",
         content: "Lorem ipsum dolor",
         title: "Lorem ttt",
-        themes: "Something",
+        description: "Lorem ipsum dolor",
+        themes: "Something themes",
         cover: "/images/fff.jpeg",
         created_at: Date.now()
     },
@@ -15,7 +16,8 @@ const articles = [
         userId: "6383870c5bed33bd78192188",
         content: "Lorem ipsum dolor and etc",
         title: "Lorem adad",
-        themes: "Something",
+        description: "Lorem ipsum dolor",
+        themes: "Something themes",
         cover: "/images/fff.jpeg",
         created_at: Date.now()
     },
@@ -25,7 +27,8 @@ const articles = [
         userId: "6383870c5bed33bd78192188",
         content: "Lorem ipsum dolor and etc",
         title: "Lorem G",
-        themes: "Something",
+        description: "Lorem ipsum dolor",
+        themes: "Something themes",
         cover: "/images/fff.jpeg",
         created_at: Date.now()
     },
@@ -35,7 +38,8 @@ const articles = [
         userId: "6383870c5bed33bd78192188",
         content: "Lorem ipsum dolor and etc",
         title: "Lorem impus",
-        themes: "Something",
+        description: "Lorem ipsum dolor",
+        themes: "Something themes",
         cover: "/images/fff.jpeg",
         created_at: Date.now()
     },
@@ -45,7 +49,8 @@ const articles = [
         userId: "6383870c5bed33bd78192188",
         content: "Lorem ipsum dolor and etc",
         title: "Lorem i",
-        themes: "Something",
+        description: "Lorem ipsum dolor",
+        themes: "Something themes",
         cover: "/images/fff.jpeg",
         created_at: Date.now()
     }
@@ -69,7 +74,7 @@ const fetchAll = () =>
 
 const fetchRandomArticles = () => {
     const randomArticles = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
         randomArticles.push(arrayRandElement(articles));
     }
     if (randomArticles.length > 0) {
