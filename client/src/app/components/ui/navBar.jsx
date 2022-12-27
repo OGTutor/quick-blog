@@ -4,13 +4,11 @@ import { NavLink, Outlet } from "react-router-dom";
 const NavBar = () => {
     return (
         <>
-            <nav className="navbar navbar-dark bg-dark shadow">
+            <nav className="navbar navbar-dark bg-black shadow">
                 <div className="container-fluid">
-                    <div></div>
-                    <a className="navbar-brand ms-5" href="/">
+                    <a className="navbar-brand" href="/">
                         Quick Blog
                     </a>
-                    <div></div>
                     <button
                         className="navbar-toggler"
                         type="button"
