@@ -5,8 +5,8 @@ const NavBar = () => {
     return (
         <>
             <nav className="navbar navbar-dark bg-black shadow">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="/">
+                <div className="container-fluid justify-content-center">
+                    <a className="navbar-brand ms-6" href="/">
                         Quick Blog
                     </a>
                     <button

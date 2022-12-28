@@ -1,3 +1,5 @@
+@import "../node_modules/bootstrap/scss/bootstrap-grid";
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -11,4 +13,14 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
+}
+
+.ms-6 {
+    margin-left: ($spacer * 22) !important;
+}
+
+@media screen and (max-width: 1900px) {
+    .user-card {
+        display: none;
+    }
 }

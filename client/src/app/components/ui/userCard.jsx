@@ -2,17 +2,25 @@ import React from "react";
 
 const UserCard = () => {
     return (
-        <div className="position-absolute top-0 start-0">
-            <div className="container-lt text-center">
+        <div
+            className="user-card position-fixed top-0 start-0"
+            style={{ height: 100 + "%", width: 22 + "rem" }}
+        >
+            <div
+                className="container-lt text-center"
+                style={{ height: 100 + "%", width: 22 + "rem" }}
+            >
                 <div
                     className="card bg-secondary bg-dark"
-                    style={{ width: 18 + "rem" }}
+                    style={{ height: 100 + "%", width: 22 + "rem" }}
                 >
                     <img
                         src="/images/fff.jpeg"
                         className="card-img-top"
-                        width="150"
-                        height="150"
+                        style={{
+                            width: "150",
+                            height: "150"
+                        }}
                         alt="bg"
                     />
                     <div className="position-relative">
@@ -29,12 +37,12 @@ const UserCard = () => {
                         />
                     </div>
                     <div className="card-body d-flex flex-column align-items-center text-center position-relative">
-                        <h5 className="card-title text-white mt-4">Name</h5>
-                        <p className="card-text font-monospace text-white-50">
+                        <h5 className="card-title text-white mt-5">Name</h5>
+                        <p className="card-text font-monospace text-white-50 mt-2">
                             Name of blog
                         </p>
                     </div>
-                    <div className="position-relative">
+                    <div className="position mb-2 translate-middle-y">
                         <a href="https://www.instagram.com/">
                             <img
                                 src="/images/instagram.png"
@@ -63,7 +71,8 @@ const UserCard = () => {
                             />
                         </a>
                     </div>
-                    <div className="card-body d-flex flex-column align-items-center text-center position-relative mt-3 border border-secondary border-2 rounded m-3">
+                    <hr className="mb-3" />
+                    <div className="card-body d-flex flex-column align-items-center text-center position-relative border border-secondary border-2 rounded me-3 ms-3 mb-5">
                         <p className="card-text fw-light text-white">
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit. Nemo, accusamus ipsa! Facilis tempora
@@ -72,20 +81,16 @@ const UserCard = () => {
                             reiciendis, ea quia officiis?
                         </p>
                     </div>
-                    <div className="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-                        <button
-                            type="button"
-                            className="btn btn-danger me-md-1"
-                        >
+                    <hr className="mb-5" />
+                    <div className="d-grid gap-2 d-md-flex justify-content-center mb-5 me-2">
+                        <button type="button" className="btn btn-danger">
                             My articles
                         </button>
-                        <button
-                            type="button"
-                            className="btn btn-primary me-md-3"
-                        >
+                        <button type="button" className="btn btn-primary">
                             Write an article
                         </button>
                     </div>
+                    <hr className="mb-5" />
                 </div>
             </div>
         </div>
