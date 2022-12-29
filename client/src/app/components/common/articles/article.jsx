@@ -2,7 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { displayDate } from "../../../utils/displayDate";
 
-const Article = ({ id, title, description, themes, cover, createdAt }) => {
+const Article = ({
+    id,
+    title,
+    description,
+    themes,
+    cover,
+    createdAt,
+    goToArticlePage
+}) => {
     return (
         <div key={id} className="d-flex justify-content-center">
             <div
@@ -20,7 +28,10 @@ const Article = ({ id, title, description, themes, cover, createdAt }) => {
                         <small className="text-secondary font-monospace">
                             {` • ${themes}`}
                         </small>
-                        <button className="btn btn-outline-primary position-absolute bottom-0 end-0 mb-5 me-3">
+                        <button
+                            className="btn btn-outline-primary position-absolute bottom-0 end-0 mb-5 me-3"
+                            onClick={() => goToArticlePage(id)}
+                        >
                             Read
                         </button>
                     </p>
@@ -36,7 +47,8 @@ Article.propTypes = {
     description: PropTypes.string.isRequired,
     themes: PropTypes.string.isRequired,
     cover: PropTypes.string.isRequired,
-    createdAt: PropTypes.number.isRequired
+    createdAt: PropTypes.number.isRequired,
+    goToArticlePage: PropTypes.func.isRequired
 };
 
 export default Article;

@@ -1,12 +1,12 @@
 const articles = [
     {
-        _id: "67rdca3eeb7f6fg",
-        userId: "6383870c5bed33bd78192188",
-        pageId: "67rdca3eeb7f6fgeed471815",
-        content: "Lorem ipsum dolor",
-        title: "Lorem ttt",
+        _id: "67rdca3eeb7f6fggggg",
+        userId: "6383870c5bed33bd7819218888",
+        pageId: "67rdca3eeb7f6fgeed47181588",
+        content: "Lorem ipsum dolor gggg",
+        title: "Lorem 1",
         description: "Lorem ipsum dolor",
-        themes: "Something themes",
+        themes: "Something themes!",
         cover: "/images/fff.jpeg",
         created_at: Date.now()
     },
@@ -15,7 +15,7 @@ const articles = [
         pageId: "67rdca3eeb7f6fgeed471815",
         userId: "6383870c5bed33bd78192188",
         content: "Lorem ipsum dolor and etc",
-        title: "Lorem adad",
+        title: "Lorem 2",
         description: "Lorem ipsum dolor",
         themes: "Something themes",
         cover: "/images/fff.jpeg",
@@ -26,7 +26,7 @@ const articles = [
         pageId: "67rdca3eeb7f6fgeed471817",
         userId: "6383870c5bed33bd78192188",
         content: "Lorem ipsum dolor and etc",
-        title: "Lorem G",
+        title: "Lorem 3",
         description: "Lorem ipsum dolor",
         themes: "Something themes",
         cover: "/images/fff.jpeg",
@@ -37,7 +37,7 @@ const articles = [
         pageId: "67rdca3eeb7f6fgeed471817",
         userId: "6383870c5bed33bd78192188",
         content: "Lorem ipsum dolor and etc",
-        title: "Lorem impus",
+        title: "Lorem 4",
         description: "Lorem ipsum dolor",
         themes: "Something themes",
         cover: "/images/fff.jpeg",
@@ -48,7 +48,7 @@ const articles = [
         pageId: "67rdca3eeb7f6fgeed471817",
         userId: "6383870c5bed33bd78192188",
         content: "Lorem ipsum dolor and etc",
-        title: "Lorem i",
+        title: "Lorem 5",
         description: "Lorem ipsum dolor",
         themes: "Something themes",
         cover: "/images/fff.jpeg",
@@ -91,7 +91,18 @@ const fetchArticlesForUser = (userId) =>
         window.setTimeout(function () {
             resolve(
                 JSON.parse(localStorage.getItem("articles")).filter(
-                    (c) => c.pageId === userId
+                    (a) => a.pageId === userId
+                )
+            );
+        }, 200);
+    });
+
+const getArticleById = (id) =>
+    new Promise((resolve) => {
+        window.setTimeout(function () {
+            resolve(
+                JSON.parse(localStorage.getItem("articles")).find(
+                    (a) => a._id === id
                 )
             );
         }, 200);
@@ -116,7 +127,7 @@ const remove = (id) =>
     new Promise((resolve) => {
         window.setTimeout(function () {
             const articles = JSON.parse(localStorage.getItem("articles"));
-            const newArticles = articles.filter((x) => x._id !== id);
+            const newArticles = articles.filter((a) => a._id !== id);
             localStorage.setItem("articles", JSON.stringify(newArticles));
             resolve(id);
         }, 200);
@@ -126,6 +137,7 @@ export default {
     fetchAll,
     fetchRandomArticles,
     fetchArticlesForUser,
+    getArticleById,
     add,
     remove
 };

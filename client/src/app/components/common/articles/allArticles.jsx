@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../../../api";
 import { paginate } from "../../../utils/paginate";
 import Pagination from "../pagination";
 import Article from "./article";
 
 const AllArticles = () => {
+    const navigate = useNavigate();
     const [articles, setArticles] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 4;
@@ -29,6 +31,10 @@ const AllArticles = () => {
         }
     };
 
+    const handleGoToArticlePage = (id) => {
+        navigate(`/article/${id}`);
+    };
+
     const countOfArticles = articles.length;
 
     const articlesCrop = paginate(articles, currentPage, pageSize);
@@ -45,6 +51,7 @@ const AllArticles = () => {
                           themes={a.themes}
                           cover={a.cover}
                           createdAt={a.created_at}
+                          goToArticlePage={handleGoToArticlePage}
                       />
                   ))
                 : "Loading..."}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import API from "../../../api";
 import { displayDate } from "../../../utils/displayDate";
 
@@ -19,13 +20,13 @@ const RandomArticles = () => {
                     ? articles.map((a) => (
                           <div key={a._id} className="col m-1">
                               <div className="card bg-dark">
-                                  <a href="/">
+                                  <NavLink to={`/article/${a._id}`}>
                                       <img
                                           src={a.cover}
                                           className="card-img-top"
                                           alt="cover"
                                       />
-                                  </a>
+                                  </NavLink>
                                   <div className="card-body fw-bold">
                                       <h5 className="text-white">{a.title}</h5>
                                       <p className="text-secondary font-monospace">

@@ -19,6 +19,10 @@ code {
     margin-left: ($spacer * 22) !important;
 }
 
+.myHr {
+    border: 1px solid black;
+}
+
 @media screen and (max-width: 1900px) {
     .user-card {
         display: none;
