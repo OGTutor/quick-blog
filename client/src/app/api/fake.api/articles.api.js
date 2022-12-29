@@ -6,7 +6,7 @@ const articles = [
         content: "Lorem ipsum dolor gggg",
         title: "Lorem 1",
         description: "Lorem ipsum dolor",
-        themes: "Something themes!",
+        themes: ["Something themes!", "CSS", "HTML"],
         cover: "/images/fff.jpeg",
         created_at: Date.now()
     },
@@ -17,7 +17,7 @@ const articles = [
         content: "Lorem ipsum dolor and etc",
         title: "Lorem 2",
         description: "Lorem ipsum dolor",
-        themes: "Something themes",
+        themes: ["Something themes", "CSS", "HTML"],
         cover: "/images/fff.jpeg",
         created_at: Date.now()
     },
@@ -28,7 +28,7 @@ const articles = [
         content: "Lorem ipsum dolor and etc",
         title: "Lorem 3",
         description: "Lorem ipsum dolor",
-        themes: "Something themes",
+        themes: ["Something themes", "CSS", "HTML"],
         cover: "/images/fff.jpeg",
         created_at: Date.now()
     },
@@ -39,7 +39,7 @@ const articles = [
         content: "Lorem ipsum dolor and etc",
         title: "Lorem 4",
         description: "Lorem ipsum dolor",
-        themes: "Something themes",
+        themes: ["Something themes", "CSS", "HTML"],
         cover: "/images/fff.jpeg",
         created_at: Date.now()
     },
@@ -50,7 +50,7 @@ const articles = [
         content: "Lorem ipsum dolor and etc",
         title: "Lorem 5",
         description: "Lorem ipsum dolor",
-        themes: "Something themes",
+        themes: ["Something themes", "CSS", "HTML"],
         cover: "/images/fff.jpeg",
         created_at: Date.now()
     }

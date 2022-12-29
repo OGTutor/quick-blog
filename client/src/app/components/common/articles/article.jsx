@@ -13,10 +13,7 @@ const Article = ({
 }) => {
     return (
         <div key={id} className="d-flex justify-content-center">
-            <div
-                className="card mb-3 mt-3 bg-dark"
-                style={{ width: 70 + "rem" }}
-            >
+            <div className="card mb-3 mt-3 bg-dark" style={{ width: "70rem" }}>
                 <img src={cover} className="card-img-top" alt="cover" />
                 <div className="card-body">
                     <h5 className="card-title text-white">{title}</h5>

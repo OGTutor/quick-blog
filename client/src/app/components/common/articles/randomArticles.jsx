@@ -11,10 +11,7 @@ const RandomArticles = () => {
     }, []);
 
     return (
-        <div
-            className="container text-center mt-4"
-            style={{ width: 72 + "rem" }}
-        >
+        <div className="container text-center mt-4" style={{ width: "72rem" }}>
             <div className="row">
                 {articles
                     ? articles.map((a) => (

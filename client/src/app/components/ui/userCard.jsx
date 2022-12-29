@@ -1,6 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserCard = () => {
+    const navigate = useNavigate();
+
+    const handleGoToUserArticles = () => {
+        navigate(`/articles`);
+    };
     return (
         <div
             className="user-card position-fixed top-0 start-0"
@@ -83,7 +89,11 @@ const UserCard = () => {
                     </div>
                     <hr className="mb-5" />
                     <div className="d-grid gap-2 d-md-flex justify-content-center mb-5 me-2">
-                        <button type="button" className="btn btn-danger">
+                        <button
+                            type="button"
+                            className="btn btn-danger"
+                            onClick={handleGoToUserArticles}
+                        >
                             My articles
                         </button>
                         <button type="button" className="btn btn-primary">
