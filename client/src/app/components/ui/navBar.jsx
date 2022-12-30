@@ -29,7 +29,7 @@ const NavBar = () => {
                                 className="offcanvas-title"
                                 id="offcanvasDarkNavbarLabel"
                             >
-                                Write it now
+                                Quick Blog
                             </h5>
                             <button
                                 type="button"
@@ -56,6 +56,11 @@ const NavBar = () => {
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to="/profile">
                                         Profile
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/login">
+                                        Login
                                     </NavLink>
                                 </li>
                             </ul>
