@@ -1,7 +1,12 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getCurrentUserData, getIsLoggedIn } from "../../store/users";
 
 const NavBar = () => {
+    const isLoggedIn = useSelector(getIsLoggedIn());
+    const currentUser = useSelector(getCurrentUserData());
+
     return (
         <>
             <nav className="navbar navbar-dark bg-black shadow">
@@ -45,27 +50,45 @@ const NavBar = () => {
                                         Home
                                     </NavLink>
                                 </li>
-                                <li className="nav-item">
-                                    <NavLink
-                                        className="nav-link"
-                                        to="/articles"
-                                    >
-                                        Your articles
-                                    </NavLink>
-                                </li>
-                                <li className="nav-item">
-                                    <NavLink
-                                        className="nav-link"
-                                        to="/profile/user/:id"
-                                    >
-                                        Profile
-                                    </NavLink>
-                                </li>
-                                <li className="nav-item">
-                                    <NavLink className="nav-link" to="/login">
-                                        Login
-                                    </NavLink>
-                                </li>
+                                {isLoggedIn && currentUser && (
+                                    <li className="nav-item">
+                                        <NavLink
+                                            className="nav-link"
+                                            to={`/articles/user/${currentUser._id}`}
+                                        >
+                                            My articles
+                                        </NavLink>
+                                    </li>
+                                )}
+                                {isLoggedIn && currentUser ? (
+                                    <>
+                                        <li className="nav-item">
+                                            <NavLink
+                                                className="nav-link"
+                                                to={`/profile/user/${currentUser._id}`}
+                                            >
+                                                Profile
+                                            </NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                            <NavLink
+                                                className="nav-link"
+                                                to="/logout"
+                                            >
+                                                Log out
+                                            </NavLink>
+                                        </li>
+                                    </>
+                                ) : (
+                                    <li className="nav-item">
+                                        <NavLink
+                                            className="nav-link"
+                                            to="/login"
+                                        >
+                                            Login
+                                        </NavLink>
+                                    </li>
+                                )}
                             </ul>
                             <form className="d-flex mt-3" role="search">
                                 <input

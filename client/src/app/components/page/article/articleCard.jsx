@@ -4,6 +4,7 @@ import { displayDate } from "../../../utils/displayDate";
 import { NavLink } from "react-router-dom";
 
 const ArticleCard = ({ article, randomArticles }) => {
+    console.log(article.themes);
     return (
         <div className="card mb-3 mt-3 bg-dark" style={{ width: "70rem" }}>
             <div className="card-body">
@@ -18,11 +19,17 @@ const ArticleCard = ({ article, randomArticles }) => {
                 <h3 className="card-title text-white">{article.title}</h3>
                 <div className="mb-2">
                     <small className="text-secondary font-monospace">
-                        {displayDate(article.created_at)}
+                        {`${displayDate(article.created_at)} • `}
                     </small>
-                    <small className="text-secondary font-monospace">
-                        {` • ${article.themes}`}
-                    </small>
+                    {article.themes &&
+                        article.themes.map((t) => (
+                            <span
+                                key={t}
+                                className="text-muted font-monospace badge m-1 bg-info"
+                            >
+                                {`${t}`}
+                            </span>
+                        ))}
                 </div>
                 <p className="card-text text-white">{article.description}</p>
             </div>

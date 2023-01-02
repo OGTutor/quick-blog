@@ -51,7 +51,7 @@ router.post('/signUp', [
 	},
 ]);
 
-router.post('signInWithPassword', [
+router.post('/signInWithPassword', [
 	check('email', 'Email is incorrect!').isEmail(),
 	check('password', 'Password is incorrect!').exists(),
 	async (req, res) => {

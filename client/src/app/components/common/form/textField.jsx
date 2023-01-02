@@ -10,8 +10,7 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
 
     const getInputClasses = () => {
         return (
-            "bg-secondary text-white form-control" +
-            (error ? " is-invalid" : "")
+            "bg-secondary text-dark form-control" + (error ? " is-invalid" : "")
         );
     };
     const toggleShowPassword = () => {

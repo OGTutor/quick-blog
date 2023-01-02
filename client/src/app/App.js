@@ -10,6 +10,7 @@ import ArticlePage from "./components/page/article";
 import NotFoundPage from "./layouts/notFoundPage";
 import LoginForm from "./components/ui/loginForm";
 import RegisterForm from "./components/ui/registerForm";
+import LogOut from "./layouts/logOut";
 import AuthLoader from "./components/ui/hoc/authLoader";
 
 const App = () => {
@@ -19,11 +20,15 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<NavBar />}>
                         <Route index element={<Home />} />
-                        <Route path="articles" element={<UserArticles />} />
+                        <Route
+                            path="articles/user/:id"
+                            element={<UserArticles />}
+                        />
                         <Route path="article/:id" element={<ArticlePage />} />
                         <Route path="profile/user/:id" element={<Profile />} />
                         <Route path="login" element={<LoginForm />} />
                         <Route path="register" element={<RegisterForm />} />
+                        <Route path="logout" element={<LogOut />} />
                         <Route path="*" element={<NotFoundPage />} />
                     </Route>
                 </Routes>

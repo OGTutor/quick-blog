@@ -20,11 +20,17 @@ const Article = ({
                     <p className="card-text text-white">{description}</p>
                     <p className="card-text">
                         <small className="text-secondary font-monospace">
-                            {displayDate(createdAt)}
+                            {`${displayDate(createdAt)} • `}
                         </small>
-                        <small className="text-secondary font-monospace">
-                            {` • ${themes}`}
-                        </small>
+                        {themes &&
+                            themes.map((t) => (
+                                <span
+                                    key={t}
+                                    className="text-muted font-monospace badge m-1 bg-info"
+                                >
+                                    {`${t}`}
+                                </span>
+                            ))}
                         <button
                             className="btn btn-outline-primary position-absolute bottom-0 end-0 mb-5 me-3"
                             onClick={() => goToArticlePage(id)}

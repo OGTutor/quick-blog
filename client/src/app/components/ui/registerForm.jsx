@@ -15,6 +15,7 @@ const RegisterForm = () => {
         email: "",
         password: "",
         typeOfBlog: "",
+        biography: "",
         instagram: "",
         pinterest: "",
         github: ""
