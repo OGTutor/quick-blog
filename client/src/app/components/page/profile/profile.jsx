@@ -46,7 +46,6 @@ const Profile = () => {
     };
 
     const handleChange = (target) => {
-        console.log("t", target);
         setData((prevState) => ({ ...prevState, [target.name]: target.value }));
     };
 
@@ -60,7 +59,7 @@ const Profile = () => {
     return (
         <>
             <UserCard />
-            <div className="position-relative ms-profile mt-6">
+            <div className="position-relative ms-profile mt-5">
                 <div className="container text-center">
                     <div className="row">
                         {!isLoading ? (
@@ -93,6 +92,24 @@ const Profile = () => {
                                                 value={data.biography}
                                                 onChange={handleChange}
                                             />
+                                            <TextField
+                                                label="Instagram"
+                                                name="instagram"
+                                                value={data.instagram}
+                                                onChange={handleChange}
+                                            />
+                                            <TextField
+                                                label="Pinterest"
+                                                name="pinterest"
+                                                value={data.pinterest}
+                                                onChange={handleChange}
+                                            />
+                                            <TextField
+                                                label="GitHub"
+                                                name="github"
+                                                value={data.github}
+                                                onChange={handleChange}
+                                            />
                                             <button
                                                 type="submit"
                                                 disabled={!isValid}
@@ -103,7 +120,7 @@ const Profile = () => {
                                         </form>
                                     </div>
                                 </div>
-                                <div className="col-4 mt-5">
+                                <div className="col-4 mt-6">
                                     <img
                                         src={data.image}
                                         className="rounded-circle border border-white bg-dark mt-5"

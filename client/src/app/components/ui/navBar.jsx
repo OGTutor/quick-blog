@@ -72,7 +72,7 @@ const NavBar = () => {
                                         </li>
                                         <li className="nav-item">
                                             <NavLink
-                                                className="nav-link"
+                                                className="nav-link text-danger"
                                                 to="/logout"
                                             >
                                                 Log out

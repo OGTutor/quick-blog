@@ -10,6 +10,9 @@ const UserCard = () => {
     const handleGoToUserArticles = () => {
         navigate(`/articles/user/${currentUser._id}`);
     };
+    const handleGoToAddNewArticle = () => {
+        navigate(`add/article`);
+    };
 
     if (currentUser) {
         return (
@@ -105,7 +108,11 @@ const UserCard = () => {
                             >
                                 My articles
                             </button>
-                            <button type="button" className="btn btn-primary">
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={handleGoToAddNewArticle}
+                            >
                                 Write an article
                             </button>
                         </div>

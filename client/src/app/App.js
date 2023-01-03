@@ -7,7 +7,8 @@ import Home from "./layouts/home";
 import UserArticles from "./layouts/userArticles";
 import Profile from "./components/page/profile";
 import ArticlePage from "./components/page/article";
-import NotFoundPage from "./layouts/notFoundPage";
+import AddArticle from "./layouts/addArticle";
+import NotFound from "./layouts/notFound";
 import LoginForm from "./components/ui/loginForm";
 import RegisterForm from "./components/ui/registerForm";
 import LogOut from "./layouts/logOut";
@@ -25,11 +26,12 @@ const App = () => {
                             element={<UserArticles />}
                         />
                         <Route path="article/:id" element={<ArticlePage />} />
+                        <Route path="add/article" element={<AddArticle />} />
                         <Route path="profile/user/:id" element={<Profile />} />
                         <Route path="login" element={<LoginForm />} />
                         <Route path="register" element={<RegisterForm />} />
                         <Route path="logout" element={<LogOut />} />
-                        <Route path="*" element={<NotFoundPage />} />
+                        <Route path="*" element={<NotFound />} />
                     </Route>
                 </Routes>
             </AuthLoader>

@@ -69,7 +69,10 @@ const ArticleCard = ({ article, randomArticles }) => {
 
 ArticleCard.propTypes = {
     article: PropTypes.object.isRequired,
-    randomArticles: PropTypes.array
+    randomArticles: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node
+    ])
 };
 
 export default ArticleCard;

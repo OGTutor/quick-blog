@@ -48,7 +48,10 @@ Article.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    themes: PropTypes.string.isRequired,
+    themes: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node
+    ]).isRequired,
     cover: PropTypes.string.isRequired,
     createdAt: PropTypes.number.isRequired,
     goToArticlePage: PropTypes.func.isRequired
