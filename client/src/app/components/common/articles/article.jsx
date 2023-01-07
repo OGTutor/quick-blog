@@ -22,7 +22,7 @@ const Article = ({
                         <small className="text-secondary font-monospace">
                             {`${displayDate(createdAt)} • `}
                         </small>
-                        {themes &&
+                        {/* {themes &&
                             themes.map((t) => (
                                 <span
                                     key={t}
@@ -30,7 +30,7 @@ const Article = ({
                                 >
                                     {`${t}`}
                                 </span>
-                            ))}
+                            ))} */}
                         <button
                             className="btn btn-outline-primary position-absolute bottom-0 end-0 mb-5 me-3"
                             onClick={() => goToArticlePage(id)}

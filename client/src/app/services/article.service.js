@@ -12,7 +12,12 @@ const articleService = {
         return data;
     },
     getArticlesForUser: async (userId) => {
-        const { data } = await httpService.get(articleEndPoint + userId);
+        const { data } = await httpService.get(articleEndPoint, {
+            params: {
+                orderBy: "userId",
+                equalTo: userId
+            }
+        });
         return data;
     },
     removeArticle: async (articleId) => {

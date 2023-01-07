@@ -122,7 +122,7 @@ const Profile = () => {
                                 </div>
                                 <div className="col-4 mt-6">
                                     <img
-                                        src={data.image}
+                                        src={data.avatar}
                                         className="rounded-circle border border-white bg-dark mt-5"
                                         width="150px"
                                         height="150px"

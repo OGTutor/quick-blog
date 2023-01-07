@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserCard from "../components/ui/userCard";
 import TextField from "../components/common/form/textField";
+import { createArticle } from "../store/articles";
+import { validator } from "../utils/validator";
+import { getCurrentUserId } from "../store/users";
+import UploadFile from "../components/common/form/uploadFile";
 
 const AddArticle = () => {
     const dispatch = useDispatch();
+    const userId = useSelector(getCurrentUserId());
     const [isLoading, setLoading] = useState(true);
     const navigate = useNavigate();
     const [data, setData] = useState({
@@ -13,10 +18,55 @@ const AddArticle = () => {
         description: "",
         content: "",
         themes: "",
-        cover: "",
-        userId: ""
+        cover: ""
     });
     const [errors, setErrors] = useState({});
+
+    const handleChange = (target) => {
+        setData((prevState) => ({
+            ...prevState,
+            [target.name]: target.value
+        }));
+    };
+
+    const validatorConfig = {
+        content: {
+            isRequired: { message: "Message cannot be empty" }
+        }
+    };
+
+    useEffect(() => {
+        validate();
+    }, [data]);
+
+    const validate = () => {
+        const errors = validator(data, validatorConfig);
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+
+    const isValid = Object.keys(errors).length === 0;
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const isValid = validate();
+        if (!isValid) return null;
+
+        const updatedData = new FormData();
+        updatedData.append("title", data.title);
+        updatedData.append("description", data.description);
+        updatedData.append("content", data.content);
+        updatedData.append("themes", data.themes);
+        updatedData.append("cover", data.cover);
+
+        dispatch(
+            createArticle({
+                payload: updatedData,
+                navigate,
+                redirect: userId
+            })
+        );
+    };
 
     return (
         <>
@@ -25,50 +75,46 @@ const AddArticle = () => {
                 <div className="container text-center">
                     <div className="row">
                         <div className="col-8">
-                            <h2 className="text-white">Profile</h2>
+                            <h2 className="text-white">Write a new article</h2>
                             <div className="mt-5">
-                                <form onSubmit={handleSubmit}>
+                                <form
+                                    onSubmit={handleSubmit}
+                                    encType="multipart/form-data"
+                                    action=""
+                                    method="post"
+                                >
                                     <TextField
-                                        name="name"
-                                        value={data.name}
+                                        label="Title of article"
+                                        name="title"
+                                        value={data.title}
                                         onChange={handleChange}
-                                        error={errors.name}
+                                        error={errors.title}
                                     />
                                     <TextField
-                                        name="email"
-                                        value={data.email}
+                                        label="Description of article"
+                                        name="description"
+                                        value={data.description}
                                         onChange={handleChange}
-                                        error={errors.email}
+                                        error={errors.description}
                                     />
                                     <TextField
-                                        label="Type of your blog"
-                                        name="typeOfBlog"
-                                        value={data.typeOfBlog}
+                                        label="Content of article"
+                                        name="content"
+                                        value={data.content}
                                         onChange={handleChange}
+                                        error={errors.content}
                                     />
                                     <TextField
-                                        label="Biography"
-                                        name="biography"
-                                        value={data.biography}
+                                        label="Themes of article"
+                                        name="themes"
+                                        value={data.themes}
                                         onChange={handleChange}
+                                        error={errors.themes}
                                     />
-                                    <TextField
-                                        label="Instagram"
-                                        name="instagram"
-                                        value={data.instagram}
+                                    <UploadFile
+                                        name="cover"
                                         onChange={handleChange}
-                                    />
-                                    <TextField
-                                        label="Pinterest"
-                                        name="pinterest"
-                                        value={data.pinterest}
-                                        onChange={handleChange}
-                                    />
-                                    <TextField
-                                        label="GitHub"
-                                        name="github"
-                                        value={data.github}
-                                        onChange={handleChange}
+                                        error={errors.cover}
                                     />
                                     <button
                                         type="submit"

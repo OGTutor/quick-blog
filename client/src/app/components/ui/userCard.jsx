@@ -11,7 +11,7 @@ const UserCard = () => {
         navigate(`/articles/user/${currentUser._id}`);
     };
     const handleGoToAddNewArticle = () => {
-        navigate(`add/article`);
+        navigate(`/add/article`);
     };
 
     if (currentUser) {
@@ -39,7 +39,7 @@ const UserCard = () => {
                         />
                         <div className="position-relative">
                             <img
-                                src={currentUser.image}
+                                src={currentUser.avatar}
                                 className="position-absolute top-0 start-50 translate-middle rounded-circle border border-white bg-dark"
                                 width="75"
                                 height="75"

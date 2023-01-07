@@ -1,7 +1,9 @@
 const express = require('express');
 const auth = require('../middleware/auth.middleware');
+const fileMiddleware = require('../middleware/file.middleware');
 const Article = require('../models/Article');
 const router = express.Router({ mergeParams: true });
+const path = require('path');
 
 router
 	.route('/')
@@ -16,12 +18,14 @@ router
 				.json({ message: 'An error occurred on the server. Try it later!' });
 		}
 	})
-	.post(auth, async (req, res) => {
+	.post(auth, fileMiddleware.single('cover'), async (req, res) => {
 		try {
 			const newArticle = await Article.create({
 				...req.body,
+				cover: req.file,
 				userId: req.user._id,
 			});
+
 			res.status(201).send(newArticle);
 		} catch (error) {
 			res

@@ -63,15 +63,18 @@ export const loadArticlesForCurrentUser = (userId) => async (dispatch) => {
     }
 };
 
-export const createArticle = (payload) => async (dispatch) => {
-    dispatch(addArticleRequested());
-    try {
-        const { content } = await articleService.createArticle(payload);
-        dispatch(articleCreated(content));
-    } catch (error) {
-        dispatch(articlesRequestFailed(error.message));
-    }
-};
+export const createArticle =
+    ({ payload, navigate, redirect }) =>
+    async (dispatch) => {
+        dispatch(addArticleRequested());
+        try {
+            const { content } = await articleService.createArticle(payload);
+            navigate(`/articles/user/${redirect}`);
+            dispatch(articleCreated(content));
+        } catch (error) {
+            dispatch(articlesRequestFailed(error.message));
+        }
+    };
 
 export const removeArticle = (articleId) => async (dispatch) => {
     dispatch(removeArticleRequested());
