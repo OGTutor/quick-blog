@@ -20,6 +20,15 @@ const articleService = {
         });
         return data;
     },
+    getArticleById: async (id) => {
+        const { data } = await httpService.get(articleEndPoint, {
+            params: {
+                orderBy: "_id",
+                equalTo: id
+            }
+        });
+        return data;
+    },
     removeArticle: async (articleId) => {
         const { data } = await httpService.delete(articleEndPoint + articleId);
         return data;

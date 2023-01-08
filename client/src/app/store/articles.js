@@ -88,6 +88,11 @@ export const removeArticle = (articleId) => async (dispatch) => {
     }
 };
 
+export const loadArticleById = (id) => (state) => {
+    if (state.articles.entities) {
+        return state.articles.entities.find((a) => a._id === id);
+    }
+};
 export const getArticles = () => (state) => state.articles.entities;
 export const getArticlesLoadingStatus = () => (state) =>
     state.articles.isLoading;

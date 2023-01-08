@@ -5,9 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     getArticles,
     getArticlesLoadingStatus,
-    loadArticlesForCurrentUser
+    loadArticlesForCurrentUser,
+    removeArticle
 } from "../store/articles";
 import { getCurrentUserId } from "../store/users";
+import { stringToArray } from "../utils/helpers";
+import config from "../config.json";
 
 const UserArticles = () => {
     const dispatch = useDispatch();
@@ -19,7 +22,11 @@ const UserArticles = () => {
     useEffect(() => {
         dispatch(loadArticlesForCurrentUser(userId));
     }, [userId]);
-    // console.log(sortedArticles[0].cover);
+
+    const handleRemoveArticle = (id) => {
+        dispatch(removeArticle(id));
+    };
+
     return (
         <>
             <UserCard />
@@ -37,7 +44,7 @@ const UserArticles = () => {
                                     <div className="row g-0">
                                         <div className="col-md-4">
                                             <img
-                                                src={`http://localhost:8080/${a.cover.path}`}
+                                                src={`${config.pathToCover}${a.cover.path}`}
                                                 className="img-fluid rounded-start"
                                                 alt={a.cover.fieldname}
                                                 style={{
@@ -59,9 +66,11 @@ const UserArticles = () => {
                                                         {a.content}
                                                     </p>
                                                 </div>
-                                                {/* <p className="card-text">
+                                                <p className="card-text">
                                                     {a.themes
-                                                        ? a.themes.map((t) => (
+                                                        ? stringToArray(
+                                                              a.themes
+                                                          ).map((t) => (
                                                               <span
                                                                   key={t}
                                                                   className="text-muted font-monospace badge m-1 bg-info"
@@ -70,7 +79,7 @@ const UserArticles = () => {
                                                               </span>
                                                           ))
                                                         : ""}
-                                                </p> */}
+                                                </p>
                                                 <button
                                                     type="button"
                                                     className="btn btn-outline-warning me-2"
@@ -80,6 +89,11 @@ const UserArticles = () => {
                                                 <button
                                                     type="button"
                                                     className="btn btn-outline-danger"
+                                                    onClick={() =>
+                                                        handleRemoveArticle(
+                                                            a._id
+                                                        )
+                                                    }
                                                 >
                                                     Delete
                                                 </button>

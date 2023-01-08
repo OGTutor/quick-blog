@@ -7,6 +7,7 @@ import { createArticle } from "../store/articles";
 import { validator } from "../utils/validator";
 import { getCurrentUserId } from "../store/users";
 import UploadFile from "../components/common/form/uploadFile";
+import { stringToArray } from "../utils/helpers";
 
 const AddArticle = () => {
     const dispatch = useDispatch();

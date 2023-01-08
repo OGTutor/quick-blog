@@ -2,9 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { displayDate } from "../../../utils/displayDate";
 import { NavLink } from "react-router-dom";
+import { stringToArray } from "../../../utils/helpers";
+import config from "../../../config.json";
 
 const ArticleCard = ({ article, randomArticles }) => {
-    console.log(article.themes);
     return (
         <div className="card mb-3 mt-3 bg-dark" style={{ width: "70rem" }}>
             <div className="card-body">
@@ -22,7 +23,7 @@ const ArticleCard = ({ article, randomArticles }) => {
                         {`${displayDate(article.created_at)} • `}
                     </small>
                     {article.themes &&
-                        article.themes.map((t) => (
+                        stringToArray(article.themes).map((t) => (
                             <span
                                 key={t}
                                 className="text-muted font-monospace badge m-1 bg-info"
@@ -33,7 +34,11 @@ const ArticleCard = ({ article, randomArticles }) => {
                 </div>
                 <p className="card-text text-white">{article.description}</p>
             </div>
-            <img src={article.cover} className="card-img-bottom" alt="cover" />
+            <img
+                src={`${config.pathToCover}${article.cover.path}`}
+                className="card-img-bottom"
+                alt="cover"
+            />
             <div className="card-body">
                 <p className="card-text text-white">{article.content}</p>
             </div>
