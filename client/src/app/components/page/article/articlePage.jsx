@@ -1,32 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-import API from "../../../api";
-
 import UserCard from "../../ui/userCard";
 import ArticleCard from "./articleCard";
 import {
     getArticlesLoadingStatus,
     loadArticlesList,
-    loadArticleById
+    loadArticleById,
+    getArticles
 } from "../../../store/articles";
 import { useDispatch, useSelector } from "react-redux";
+import { getRandomArticles } from "../../../utils/helpers";
 
 const ArticlePage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const articlesLoading = useSelector(getArticlesLoadingStatus());
     const currentArticle = useSelector(loadArticleById(id));
-    const [randomArticles, setRandomArticles] = useState([]);
+    const articles = useSelector(getArticles());
 
     useEffect(() => {
-        dispatch(loadArticlesList(id));
-        API.articles
-            .fetchRandomArticles()
-            .then((res) => setRandomArticles(res));
+        dispatch(loadArticlesList());
     }, [id]);
 
     if (!articlesLoading && currentArticle) {
+        const randomArticles = getRandomArticles(articles);
         return (
             <>
                 <UserCard />
