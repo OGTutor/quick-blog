@@ -27,6 +27,11 @@ const articlesSlice = createSlice({
             state.entities = state.entities.filter(
                 (a) => a._id !== action.payload
             );
+        },
+        articleUpdateSuccessfully: (state, action) => {
+            state.entities[
+                state.entities.findIndex((a) => a._id === action.payload._id)
+            ] = action.payload;
         }
     }
 });
@@ -37,11 +42,14 @@ const {
     articlesReceived,
     articlesRequestFailed,
     articleCreated,
-    articleRemoved
+    articleRemoved,
+    articleUpdateSuccessfully
 } = actions;
 
 const addArticleRequested = createAction("articles/addArticleRequested");
 const removeArticleRequested = createAction("articles/removeArticleRequested");
+const articleUpdateFailed = createAction("articles/articleUpdateFailed");
+const articleUpdateRequested = createAction("articles/articleUpdateRequested");
 
 export const loadArticlesList = () => async (dispatch) => {
     dispatch(articlesRequested());
@@ -73,6 +81,22 @@ export const createArticle =
             dispatch(articleCreated(content));
         } catch (error) {
             dispatch(articlesRequestFailed(error.message));
+        }
+    };
+
+export const updateArticle =
+    ({ payload, articleId, navigate }) =>
+    async (dispatch) => {
+        dispatch(articleUpdateRequested());
+        try {
+            const { content } = await articleService.update({
+                payload,
+                articleId
+            });
+            dispatch(articleUpdateSuccessfully(content));
+            navigate("/");
+        } catch (error) {
+            dispatch(articleUpdateFailed(error.message));
         }
     };
 

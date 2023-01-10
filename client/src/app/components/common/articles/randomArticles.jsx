@@ -10,7 +10,7 @@ const RandomArticles = () => {
     const articlesLoading = useSelector(getArticlesLoadingStatus());
     const articles = useSelector(getArticles());
 
-    if (!articlesLoading && articles) {
+    if (!articlesLoading && articles.length > 0) {
         const randomArticles = getRandomArticles(articles);
         return (
             <div

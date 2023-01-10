@@ -1,4 +1,5 @@
 import httpService from "./http.service";
+import localStorageService from "./localStorage.service";
 
 const articleEndPoint = "article/";
 
@@ -27,6 +28,13 @@ const articleService = {
                 equalTo: id
             }
         });
+        return data;
+    },
+    update: async ({ payload, articleId }) => {
+        const { data } = await httpService.patch(
+            articleEndPoint + articleId,
+            payload
+        );
         return data;
     },
     removeArticle: async (articleId) => {

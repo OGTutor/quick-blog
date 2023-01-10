@@ -50,18 +50,24 @@ const NavBar = () => {
                                         Home
                                     </NavLink>
                                 </li>
-                                {isLoggedIn && currentUser && (
-                                    <li className="nav-item">
-                                        <NavLink
-                                            className="nav-link"
-                                            to={`/articles/user/${currentUser._id}`}
-                                        >
-                                            My articles
-                                        </NavLink>
-                                    </li>
-                                )}
                                 {isLoggedIn && currentUser ? (
                                     <>
+                                        <li className="nav-item">
+                                            <NavLink
+                                                className="nav-link"
+                                                to={`/articles/user/${currentUser._id}`}
+                                            >
+                                                My articles
+                                            </NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                            <NavLink
+                                                className="nav-link"
+                                                to={`/add/article`}
+                                            >
+                                                Write an article
+                                            </NavLink>
+                                        </li>
                                         <li className="nav-item">
                                             <NavLink
                                                 className="nav-link"

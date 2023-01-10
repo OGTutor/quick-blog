@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import UserCard from "../components/ui/userCard";
 import TextField from "../components/common/form/textField";
 import { createArticle } from "../store/articles";
 import { validator } from "../utils/validator";
 import { getCurrentUserId } from "../store/users";
-import UploadFile from "../components/common/form/uploadFile";
-import { stringToArray } from "../utils/helpers";
+import FileUpload from "../components/common/form/fileUpload";
+import FileList from "../components/common/form/fileList";
 
 const AddArticle = () => {
     const dispatch = useDispatch();
     const userId = useSelector(getCurrentUserId());
-    const [isLoading, setLoading] = useState(true);
     const navigate = useNavigate();
     const [data, setData] = useState({
         title: "",
@@ -28,6 +27,9 @@ const AddArticle = () => {
             ...prevState,
             [target.name]: target.value
         }));
+    };
+    const handleRemoveFile = () => {
+        setData((prevState) => ({ ...prevState, cover: "" }));
     };
 
     const validatorConfig = {
@@ -72,7 +74,7 @@ const AddArticle = () => {
     return (
         <>
             <UserCard />
-            <div className="position-relative ms-profile mt-5">
+            <div className="position-relative ms-adding-article mt-5">
                 <div className="container text-center">
                     <div className="row">
                         <div className="col-8">
@@ -112,10 +114,17 @@ const AddArticle = () => {
                                         onChange={handleChange}
                                         error={errors.themes}
                                     />
-                                    <UploadFile
+                                    <p className="title text-white">
+                                        Upload cover for your article
+                                    </p>
+                                    <FileUpload
                                         name="cover"
                                         onChange={handleChange}
                                         error={errors.cover}
+                                    />
+                                    <FileList
+                                        file={data.cover}
+                                        removeFile={handleRemoveFile}
                                     />
                                     <button
                                         type="submit"

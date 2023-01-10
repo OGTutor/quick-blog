@@ -11,8 +11,10 @@ import {
 import { getCurrentUserId } from "../store/users";
 import { stringToArray } from "../utils/helpers";
 import config from "../config.json";
+import { useNavigate } from "react-router-dom";
 
 const UserArticles = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const userId = useSelector(getCurrentUserId());
     const articlesLoading = useSelector(getArticlesLoadingStatus());
@@ -25,6 +27,9 @@ const UserArticles = () => {
 
     const handleRemoveArticle = (id) => {
         dispatch(removeArticle(id));
+    };
+    const handleEditArticle = (id) => {
+        navigate(`/edit/article/${id}`);
     };
 
     return (
@@ -83,6 +88,9 @@ const UserArticles = () => {
                                                 <button
                                                     type="button"
                                                     className="btn btn-outline-warning me-2"
+                                                    onClick={() =>
+                                                        handleEditArticle(a._id)
+                                                    }
                                                 >
                                                     Edit
                                                 </button>

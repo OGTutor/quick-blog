@@ -3,7 +3,6 @@ const auth = require('../middleware/auth.middleware');
 const fileMiddleware = require('../middleware/file.middleware');
 const Article = require('../models/Article');
 const router = express.Router({ mergeParams: true });
-const path = require('path');
 
 router
 	.route('/')
@@ -33,6 +32,33 @@ router
 				.json({ message: 'An error occurred on the server. Try it later!' });
 		}
 	});
+
+router.patch(
+	'/:articleId',
+	auth,
+	fileMiddleware.single('cover'),
+	async (req, res) => {
+		try {
+			const { articleId } = req.params;
+			const article = { ...req.body, cover: req.file };
+
+			if (articleId && article) {
+				const updatedArticle = await Article.findByIdAndUpdate(
+					articleId,
+					article,
+					{ new: true }
+				);
+				res.send(updatedArticle);
+			} else {
+				res.status(401).json({ message: 'Unauthorized' });
+			}
+		} catch (error) {
+			res
+				.status(500)
+				.json({ message: 'An error occurred on the server. Try it later!' });
+		}
+	}
+);
 
 router.delete('/:articleId', auth, async (req, res) => {
 	try {
