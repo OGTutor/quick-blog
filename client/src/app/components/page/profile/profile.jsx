@@ -5,6 +5,9 @@ import { getCurrentUserData, updateUser } from "../../../store/users";
 import UserCard from "../../ui/userCard";
 import TextField from "../../common/form/textField";
 import { validator } from "../../../utils/validator";
+import config from "../../../config.json";
+import FileUpload from "../../common/form/fileUpload";
+import FileList from "../../common/form/fileList";
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -18,7 +21,25 @@ const Profile = () => {
         event.preventDefault();
         const isValid = validate();
         if (!isValid) return null;
-        dispatch(updateUser({ payload: { ...data }, navigate }));
+
+        const updatedUser = new FormData();
+        updatedUser.append("name", data.name);
+        updatedUser.append("email", data.email);
+        updatedUser.append("password", data.password);
+        updatedUser.append("typeOfBlog", data.typeOfBlog);
+        updatedUser.append("biography", data.biography);
+        updatedUser.append("instagram", data.instagram);
+        updatedUser.append("pinterest", data.pinterest);
+        updatedUser.append("github", data.github);
+        updatedUser.append("avatar", data.avatar);
+        dispatch(updateUser({ payload: updatedUser, navigate }));
+    };
+
+    const handleRemoveFile = () => {
+        setData((prevState) => ({
+            ...prevState,
+            avatar: ""
+        }));
     };
 
     useEffect(() => {
@@ -85,30 +106,44 @@ const Profile = () => {
                                                 name="typeOfBlog"
                                                 value={data.typeOfBlog}
                                                 onChange={handleChange}
+                                                error={errors.typeOfBlog}
                                             />
                                             <TextField
                                                 label="Biography"
                                                 name="biography"
                                                 value={data.biography}
                                                 onChange={handleChange}
+                                                error={errors.biography}
                                             />
                                             <TextField
                                                 label="Instagram"
                                                 name="instagram"
                                                 value={data.instagram}
                                                 onChange={handleChange}
+                                                error={errors.instagram}
                                             />
                                             <TextField
                                                 label="Pinterest"
                                                 name="pinterest"
                                                 value={data.pinterest}
                                                 onChange={handleChange}
+                                                error={errors.pinterest}
                                             />
                                             <TextField
                                                 label="GitHub"
                                                 name="github"
                                                 value={data.github}
                                                 onChange={handleChange}
+                                                error={errors.github}
+                                            />
+                                            <FileUpload
+                                                name="avatar"
+                                                onChange={handleChange}
+                                                error={errors.avatar}
+                                            />
+                                            <FileList
+                                                file={data.avatar}
+                                                removeFile={handleRemoveFile}
                                             />
                                             <button
                                                 type="submit"
@@ -122,7 +157,11 @@ const Profile = () => {
                                 </div>
                                 <div className="col-4 mt-6">
                                     <img
-                                        src={data.avatar}
+                                        src={
+                                            currentUser.avatar.name
+                                                ? currentUser.avatar.name
+                                                : `${config.pathToCover}${currentUser.avatar.path}`
+                                        }
                                         className="rounded-circle border border-white bg-dark mt-5"
                                         width="150px"
                                         height="150px"

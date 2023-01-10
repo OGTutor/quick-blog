@@ -1,8 +1,10 @@
 function generateUserData() {
 	return {
-		avatar: `https://avatars.dicebear.com/api/avataaars/${(Math.random() + 1)
-			.toString(36)
-			.substring(7)}.svg`,
+		avatar: {
+			name: `https://avatars.dicebear.com/api/avataaars/${(Math.random() + 1)
+				.toString(36)
+				.substring(7)}.svg`,
+		},
 	};
 }
 

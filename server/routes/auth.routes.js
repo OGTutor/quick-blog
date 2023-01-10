@@ -5,8 +5,9 @@ const User = require('../models/User');
 const router = express.Router({ mergeParams: true });
 const { generateUserData } = require('../utils/helpers');
 const tokenService = require('../services/token.service');
+const fileMiddleware = require('../middleware/file.middleware');
 
-router.post('/signUp', [
+router.post('/signUp', fileMiddleware.single('avatar'), [
 	check('email', 'Email entered incorrectly!').isEmail(),
 	check(
 		'password',
@@ -32,12 +33,25 @@ router.post('/signUp', [
 			}
 
 			const hashedPassword = await bcrypt.hash(password, 12);
+			let newUser;
 
-			const newUser = await User.create({
-				...generateUserData(),
-				...req.body,
-				password: hashedPassword,
-			});
+			if (
+				typeof req.file === 'undefined' ||
+				!req.file ||
+				typeof req.file === 'null'
+			) {
+				newUser = await User.create({
+					...req.body,
+					...generateUserData(),
+					password: hashedPassword,
+				});
+			} else {
+				newUser = await User.create({
+					avatar: req.file,
+					...req.body,
+					password: hashedPassword,
+				});
+			}
 
 			const tokens = tokenService.generate({ _id: newUser._id });
 			await tokenService.save(newUser._id, tokens.refreshToken);

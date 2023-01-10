@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getCurrentUserData } from "../../store/users";
+import config from "../../config.json";
 
 const UserCard = () => {
     const currentUser = useSelector(getCurrentUserData());
@@ -39,7 +40,11 @@ const UserCard = () => {
                         />
                         <div className="position-relative">
                             <img
-                                src={currentUser.avatar}
+                                src={
+                                    currentUser.avatar.name
+                                        ? currentUser.avatar.name
+                                        : `${config.pathToCover}${currentUser.avatar.path}`
+                                }
                                 className="position-absolute top-0 start-50 translate-middle rounded-circle border border-white bg-dark"
                                 width="75"
                                 height="75"

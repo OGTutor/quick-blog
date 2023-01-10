@@ -5,6 +5,8 @@ import { validator } from "../../utils/validator";
 import { signUp } from "../../store/users";
 import UserCard from "./userCard";
 import TextField from "../common/form/textField";
+import FileUpload from "../common/form/fileUpload";
+import FileList from "../common/form/fileList";
 
 const RegisterForm = () => {
     const dispatch = useDispatch();
@@ -18,7 +20,8 @@ const RegisterForm = () => {
         biography: "",
         instagram: "",
         pinterest: "",
-        github: ""
+        github: "",
+        avatar: ""
     });
     const [errors, setErrors] = useState({});
 
@@ -26,6 +29,13 @@ const RegisterForm = () => {
         setData((prevState) => ({
             ...prevState,
             [target.name]: target.value
+        }));
+    };
+
+    const handleRemoveFile = () => {
+        setData((prevState) => ({
+            ...prevState,
+            avatar: ""
         }));
     };
 
@@ -77,7 +87,18 @@ const RegisterForm = () => {
         event.preventDefault();
         const isValid = validate();
         if (!isValid) return null;
-        dispatch(signUp({ payload: data, navigate }));
+        const updatedUser = new FormData();
+        updatedUser.append("name", data.name);
+        updatedUser.append("email", data.email);
+        updatedUser.append("password", data.password);
+        updatedUser.append("typeOfBlog", data.typeOfBlog);
+        updatedUser.append("biography", data.biography);
+        updatedUser.append("instagram", data.instagram);
+        updatedUser.append("pinterest", data.pinterest);
+        updatedUser.append("github", data.github);
+        updatedUser.append("avatar", data.avatar);
+
+        dispatch(signUp({ payload: updatedUser, navigate }));
     };
 
     return (
@@ -126,24 +147,41 @@ const RegisterForm = () => {
                                                         name="typeOfBlog"
                                                         value={data.typeOfBlog}
                                                         onChange={handleChange}
+                                                        error={
+                                                            errors.typeOfBlog
+                                                        }
                                                     />
                                                     <TextField
                                                         label="Instagram (Optional)"
                                                         name="instagram"
                                                         value={data.instagram}
                                                         onChange={handleChange}
+                                                        error={errors.instagram}
                                                     />
                                                     <TextField
                                                         label="Pinterest (Optional)"
                                                         name="pinterest"
                                                         value={data.pinterest}
                                                         onChange={handleChange}
+                                                        error={errors.pinterest}
                                                     />
                                                     <TextField
                                                         label="Github (Optional)"
                                                         name="github"
                                                         value={data.github}
                                                         onChange={handleChange}
+                                                        error={errors.github}
+                                                    />
+                                                    <FileUpload
+                                                        name="avatar"
+                                                        onChange={handleChange}
+                                                        error={errors.avatar}
+                                                    />
+                                                    <FileList
+                                                        file={data.avatar}
+                                                        removeFile={
+                                                            handleRemoveFile
+                                                        }
                                                     />
                                                     <button
                                                         type="submit"
@@ -152,7 +190,7 @@ const RegisterForm = () => {
                                                     >
                                                         Submit
                                                     </button>
-                                                    <div className="mt-3">
+                                                    <div className="mt-3 mb-3">
                                                         <NavLink
                                                             to="/login"
                                                             className="card-link text-white text-decoration-none"

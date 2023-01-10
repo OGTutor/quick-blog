@@ -10,7 +10,7 @@ const schema = new Schema(
 		instagram: String,
 		pinterest: String,
 		github: String,
-		avatar: String,
+		avatar: Object,
 	},
 	{ timestamps: true }
 );
