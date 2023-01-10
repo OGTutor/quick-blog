@@ -58,7 +58,6 @@ const FileUpload = ({ name, onChange, error }) => {
                     <p className="info">PNG, JPEG, JPG</p>
                 </div>
             </div>
-
             {error && <div className="invalid-feedback">{error}</div>}
         </>
     );

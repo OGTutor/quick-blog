@@ -8,6 +8,7 @@ import { validator } from "../utils/validator";
 import { getCurrentUserId } from "../store/users";
 import FileUpload from "../components/common/form/fileUpload";
 import FileList from "../components/common/form/fileList";
+import TextAreaField from "../components/common/form/textAreaField";
 
 const AddArticle = () => {
     const dispatch = useDispatch();
@@ -33,8 +34,22 @@ const AddArticle = () => {
     };
 
     const validatorConfig = {
+        title: {
+            isRequired: { message: "Title is required!" },
+            min: {
+                message: "Title must contain at least 3 characters!",
+                value: 3
+            }
+        },
         content: {
-            isRequired: { message: "Message cannot be empty" }
+            isRequired: { message: "Content cannot be empty" },
+            min: {
+                message: "Content must contain at least 50 characters!",
+                value: 50
+            }
+        },
+        cover: {
+            isRequired: { message: "Content cannot be empty" }
         }
     };
 
@@ -94,13 +109,12 @@ const AddArticle = () => {
                                         error={errors.title}
                                     />
                                     <TextField
-                                        label="Description of article"
+                                        label="Description of article (Optional)"
                                         name="description"
                                         value={data.description}
                                         onChange={handleChange}
-                                        error={errors.description}
                                     />
-                                    <TextField
+                                    <TextAreaField
                                         label="Content of article"
                                         name="content"
                                         value={data.content}
@@ -108,11 +122,10 @@ const AddArticle = () => {
                                         error={errors.content}
                                     />
                                     <TextField
-                                        label="Themes of article"
+                                        label="Themes of article (Specify with a comma)"
                                         name="themes"
                                         value={data.themes}
                                         onChange={handleChange}
-                                        error={errors.themes}
                                     />
                                     <p className="title text-white">
                                         Upload cover for your article

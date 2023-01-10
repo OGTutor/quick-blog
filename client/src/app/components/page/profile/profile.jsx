@@ -8,6 +8,7 @@ import { validator } from "../../../utils/validator";
 import config from "../../../config.json";
 import FileUpload from "../../common/form/fileUpload";
 import FileList from "../../common/form/fileList";
+import TextAreaField from "../../common/form/textAreaField";
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -108,7 +109,7 @@ const Profile = () => {
                                                 onChange={handleChange}
                                                 error={errors.typeOfBlog}
                                             />
-                                            <TextField
+                                            <TextAreaField
                                                 label="Biography"
                                                 name="biography"
                                                 value={data.biography}
@@ -148,7 +149,7 @@ const Profile = () => {
                                             <button
                                                 type="submit"
                                                 disabled={!isValid}
-                                                className="btn btn-primary"
+                                                className="btn btn-primary mb-3"
                                             >
                                                 Save
                                             </button>
