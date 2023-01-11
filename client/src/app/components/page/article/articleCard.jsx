@@ -7,7 +7,7 @@ import config from "../../../config.json";
 
 const ArticleCard = ({ article, randomArticles }) => {
     return (
-        <div className="card mb-3 mt-3 bg-dark" style={{ width: "70rem" }}>
+        <>
             <div className="card-body">
                 <div className="mb-2">
                     <NavLink
@@ -68,7 +68,7 @@ const ArticleCard = ({ article, randomArticles }) => {
                 </div>
             </div>
             <hr className="myHr" />
-        </div>
+        </>
     );
 };
 

@@ -66,7 +66,7 @@ const UserArticles = () => {
                                                 <p className="card-text text-white">
                                                     {a.description}
                                                 </p>
-                                                <div className="card-body d-flex flex-column align-items-center text-center position-relative border border-secondary border-2 rounded mb-3">
+                                                <div className="card-body align-items-center text-center position-relative border border-secondary border-2 rounded mb-3">
                                                     <p className="card-text text-white">
                                                         {a.content}
                                                     </p>

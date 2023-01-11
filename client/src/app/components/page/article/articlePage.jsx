@@ -10,6 +10,7 @@ import {
 } from "../../../store/articles";
 import { useDispatch, useSelector } from "react-redux";
 import { getRandomArticles } from "../../../utils/helpers";
+import Comments from "../../ui/comments";
 
 const ArticlePage = () => {
     const { id } = useParams();
@@ -29,10 +30,16 @@ const ArticlePage = () => {
                 <UserCard />
                 <div className="position-relative ms-6">
                     <div className="position-absolute top-0 start-50 translate-middle-x">
-                        <ArticleCard
-                            article={currentArticle}
-                            randomArticles={randomArticles}
-                        />
+                        <div
+                            className="card mb-3 mt-3 bg-dark"
+                            style={{ width: "70rem" }}
+                        >
+                            <ArticleCard
+                                article={currentArticle}
+                                randomArticles={randomArticles}
+                            />
+                            <Comments />
+                        </div>
                     </div>
                 </div>
             </>
