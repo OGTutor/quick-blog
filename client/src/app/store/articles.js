@@ -94,7 +94,9 @@ export const updateArticle =
                 articleId
             });
             dispatch(articleUpdateSuccessfully(content));
-            navigate("/");
+            if (navigate) {
+                navigate("/");
+            }
         } catch (error) {
             dispatch(articleUpdateFailed(error.message));
         }

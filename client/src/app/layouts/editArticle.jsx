@@ -22,7 +22,7 @@ const EditArticle = () => {
     const articlesLoading = useSelector(getArticlesLoadingStatus());
     const currentArticle = useSelector(loadArticleById(id));
     const currentUserId = useSelector(getCurrentUserId());
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
@@ -67,6 +67,8 @@ const EditArticle = () => {
         updatedData.append("content", data.content);
         updatedData.append("themes", data.themes);
         updatedData.append("cover", data.cover);
+        updatedData.append("likes", data.likes);
+        updatedData.append("likedUsers", data.likedUsers);
         dispatch(
             updateArticle({ payload: updatedData, articleId: id, navigate })
         );

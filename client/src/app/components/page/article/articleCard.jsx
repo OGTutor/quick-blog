@@ -5,7 +5,12 @@ import { NavLink } from "react-router-dom";
 import { stringToArray } from "../../../utils/helpers";
 import config from "../../../config.json";
 
-const ArticleCard = ({ article, randomArticles }) => {
+const ArticleCard = ({
+    article,
+    randomArticles,
+    toggleLikeArticle,
+    likedUser
+}) => {
     return (
         <>
             <div className="card-body">
@@ -68,6 +73,17 @@ const ArticleCard = ({ article, randomArticles }) => {
                 </div>
             </div>
             <hr className="myHr" />
+            <div className="text-white ms-3">
+                <button
+                    className="btn btn-outline-danger"
+                    onClick={toggleLikeArticle}
+                >
+                    <i className={`bi bi-heart${likedUser ? "-fill" : ""}`}>
+                        {` → ${article.likedUsers.length}`}
+                    </i>
+                </button>
+            </div>
+            <hr className="myHr" />
         </>
     );
 };
@@ -77,7 +93,9 @@ ArticleCard.propTypes = {
     randomArticles: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node
-    ])
+    ]),
+    toggleLikeArticle: PropTypes.func.isRequired,
+    likedUser: PropTypes.bool.isRequired
 };
 
 export default ArticleCard;

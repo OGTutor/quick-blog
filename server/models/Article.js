@@ -7,6 +7,7 @@ const schema = new Schema(
 		content: String,
 		themes: String,
 		cover: Object,
+		likedUsers: Array,
 		userId: { type: Schema.Types.ObjectId, ref: 'User' },
 	},
 	{

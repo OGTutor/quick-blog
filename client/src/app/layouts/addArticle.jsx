@@ -76,6 +76,7 @@ const AddArticle = () => {
         updatedData.append("content", data.content);
         updatedData.append("themes", data.themes);
         updatedData.append("cover", data.cover);
+        updatedData.append("likes", data.likes);
 
         dispatch(
             createArticle({
