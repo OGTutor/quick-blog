@@ -13,6 +13,7 @@ import { getCurrentUserId } from "../store/users";
 import TextField from "../components/common/form/textField";
 import FileUpload from "../components/common/form/fileUpload";
 import FileList from "../components/common/form/fileList";
+import TextAreaField from "../components/common/form/textAreaField";
 
 const EditArticle = () => {
     const { id } = useParams();
@@ -22,7 +23,7 @@ const EditArticle = () => {
     const articlesLoading = useSelector(getArticlesLoadingStatus());
     const currentArticle = useSelector(loadArticleById(id));
     const currentUserId = useSelector(getCurrentUserId());
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
@@ -30,7 +31,7 @@ const EditArticle = () => {
     }, [id]);
     useEffect(() => {
         if (!articlesLoading && currentArticle && !data) {
-            setData({ ...currentArticle });
+            setData((prevState) => ({ ...prevState, ...currentArticle }));
         }
         if (data && Array.isArray(data.cover)) {
             setData((prevState) => ({
@@ -137,7 +138,7 @@ const EditArticle = () => {
                                         file={data.cover}
                                         removeFile={handleRemoveFile}
                                     />
-                                    <TextField
+                                    <TextAreaField
                                         label="Content of article"
                                         name="content"
                                         value={data.content}

@@ -50,16 +50,14 @@ const AllArticles = () => {
         return (
             <>
                 {articlesCrop.map((a) => (
-                    <Article
-                        key={a._id}
-                        id={a._id}
-                        title={a.title}
-                        description={a.description}
-                        themes={a.themes}
-                        cover={a.cover}
-                        createdAt={a.created_at}
-                        goToArticlePage={handleGoToArticlePage}
-                    />
+                    <>
+                        <Article
+                            key={a._id}
+                            article={a}
+                            articlesLoading={articlesLoading}
+                            goToArticlePage={handleGoToArticlePage}
+                        />
+                    </>
                 ))}
                 <div className="d-flex justify-content-center">
                     <Pagination

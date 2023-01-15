@@ -12,6 +12,7 @@ import { getCurrentUserId } from "../store/users";
 import { stringToArray } from "../utils/helpers";
 import config from "../config.json";
 import { useNavigate } from "react-router-dom";
+import LikeButton from "../components/common/likeButton";
 
 const UserArticles = () => {
     const navigate = useNavigate();
@@ -78,13 +79,21 @@ const UserArticles = () => {
                                                           ).map((t) => (
                                                               <span
                                                                   key={t}
-                                                                  className="text-muted font-monospace badge m-1 bg-info"
+                                                                  className="text-muted font-monospace badge me-2 mb-1 bg-info"
                                                               >
                                                                   {t}
                                                               </span>
                                                           ))
                                                         : ""}
                                                 </p>
+                                                <div className="mb-3">
+                                                    <LikeButton
+                                                        currentArticle={a}
+                                                        articlesLoading={
+                                                            articlesLoading
+                                                        }
+                                                    />
+                                                </div>
                                                 <button
                                                     type="button"
                                                     className="btn btn-outline-warning me-2"

@@ -4,13 +4,10 @@ import { displayDate } from "../../../utils/displayDate";
 import { NavLink } from "react-router-dom";
 import { stringToArray } from "../../../utils/helpers";
 import config from "../../../config.json";
+import LikeButton from "../../common/likeButton";
+import RandomArticles from "./randomArticles";
 
-const ArticleCard = ({
-    article,
-    randomArticles,
-    toggleLikeArticle,
-    likedUser
-}) => {
+const ArticleCard = ({ article, articlesLoading, currentArticle }) => {
     return (
         <>
             <div className="card-body">
@@ -52,36 +49,16 @@ const ArticleCard = ({
                 <div className="container text-center">
                     <h4 className="text-white">Interesting to read</h4>
                     <div className="row row-cols-2">
-                        {randomArticles
-                            ? randomArticles.map((a) => (
-                                  <div key={a._id} className="col text-white">
-                                      <a
-                                          href={`/article/${a._id}`}
-                                          className="text-warning text-decoration-none"
-                                      >
-                                          {a.title}
-                                      </a>
-                                      <p>
-                                          <small className="text-secondary font-monospace">
-                                              {displayDate(a.created_at)}
-                                          </small>
-                                      </p>
-                                  </div>
-                              ))
-                            : ""}
+                        <RandomArticles />
                     </div>
                 </div>
             </div>
             <hr className="myHr" />
             <div className="text-white ms-3">
-                <button
-                    className="btn btn-outline-danger"
-                    onClick={toggleLikeArticle}
-                >
-                    <i className={`bi bi-heart${likedUser ? "-fill" : ""}`}>
-                        {` → ${article.likedUsers.length}`}
-                    </i>
-                </button>
+                <LikeButton
+                    articlesLoading={articlesLoading}
+                    currentArticle={currentArticle}
+                />
             </div>
             <hr className="myHr" />
         </>
@@ -90,12 +67,8 @@ const ArticleCard = ({
 
 ArticleCard.propTypes = {
     article: PropTypes.object.isRequired,
-    randomArticles: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node
-    ]),
-    toggleLikeArticle: PropTypes.func.isRequired,
-    likedUser: PropTypes.bool.isRequired
+    articlesLoading: PropTypes.bool,
+    currentArticle: PropTypes.object
 };
 
 export default ArticleCard;
