@@ -12,7 +12,7 @@ const TextAreaField = ({ label, name, value, onChange, error }) => {
     };
 
     return (
-        <div className="mb-4">
+        <div className="mb-3">
             <div className="input-group has-validation">
                 <textarea
                     id={name}

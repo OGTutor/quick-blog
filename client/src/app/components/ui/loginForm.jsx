@@ -70,21 +70,25 @@ const LoginForm = () => {
                                     <h2 className="text-white">Login</h2>
                                     <div className="mt-5">
                                         <form onSubmit={handleSubmit}>
-                                            <TextField
-                                                label="Email"
-                                                name="email"
-                                                value={data.email}
-                                                onChange={handleChange}
-                                                error={errors.email}
-                                            />
-                                            <TextField
-                                                label="Password"
-                                                type="password"
-                                                name="password"
-                                                value={data.password}
-                                                onChange={handleChange}
-                                                error={errors.password}
-                                            />
+                                            <div className="mb-4 text-secondary">
+                                                <TextField
+                                                    label="Email"
+                                                    name="email"
+                                                    value={data.email}
+                                                    onChange={handleChange}
+                                                    error={errors.email}
+                                                />
+                                            </div>
+                                            <div className="mb-4 text-secondary">
+                                                <TextField
+                                                    label="Password"
+                                                    type="password"
+                                                    name="password"
+                                                    value={data.password}
+                                                    onChange={handleChange}
+                                                    error={errors.password}
+                                                />
+                                            </div>
                                             {loginError && (
                                                 <p className="text-danger">
                                                     {loginError}

@@ -21,6 +21,8 @@ const RegisterForm = () => {
         instagram: "",
         pinterest: "",
         github: "",
+        facebook: "",
+        twitter: "",
         avatar: ""
     });
     const [errors, setErrors] = useState({});
@@ -96,6 +98,8 @@ const RegisterForm = () => {
         updatedUser.append("instagram", data.instagram);
         updatedUser.append("pinterest", data.pinterest);
         updatedUser.append("github", data.github);
+        updatedUser.append("facebook", data.facebook);
+        updatedUser.append("twitter", data.twitter);
         updatedUser.append("avatar", data.avatar);
 
         dispatch(signUp({ payload: updatedUser, navigate }));
@@ -120,69 +124,147 @@ const RegisterForm = () => {
                                             </h2>
                                             <div className="mt-5">
                                                 <form onSubmit={handleSubmit}>
-                                                    <TextField
-                                                        label="Name"
-                                                        name="name"
-                                                        value={data.name}
-                                                        onChange={handleChange}
-                                                        error={errors.name}
-                                                    />
-                                                    <TextField
-                                                        label="Email"
-                                                        name="email"
-                                                        value={data.email}
-                                                        onChange={handleChange}
-                                                        error={errors.email}
-                                                    />
-                                                    <TextField
-                                                        label="Password"
-                                                        type="password"
-                                                        name="password"
-                                                        value={data.password}
-                                                        onChange={handleChange}
-                                                        error={errors.password}
-                                                    />
-                                                    <TextField
-                                                        label="Type of your blog (Optional)"
-                                                        name="typeOfBlog"
-                                                        value={data.typeOfBlog}
-                                                        onChange={handleChange}
-                                                        error={
-                                                            errors.typeOfBlog
-                                                        }
-                                                    />
-                                                    <TextField
-                                                        label="Instagram (Optional)"
-                                                        name="instagram"
-                                                        value={data.instagram}
-                                                        onChange={handleChange}
-                                                        error={errors.instagram}
-                                                    />
-                                                    <TextField
-                                                        label="Pinterest (Optional)"
-                                                        name="pinterest"
-                                                        value={data.pinterest}
-                                                        onChange={handleChange}
-                                                        error={errors.pinterest}
-                                                    />
-                                                    <TextField
-                                                        label="Github (Optional)"
-                                                        name="github"
-                                                        value={data.github}
-                                                        onChange={handleChange}
-                                                        error={errors.github}
-                                                    />
-                                                    <FileUpload
-                                                        name="avatar"
-                                                        onChange={handleChange}
-                                                        error={errors.avatar}
-                                                    />
-                                                    <FileList
-                                                        file={data.avatar}
-                                                        removeFile={
-                                                            handleRemoveFile
-                                                        }
-                                                    />
+                                                    <div className="mb-4">
+                                                        <TextField
+                                                            label="Name"
+                                                            name="name"
+                                                            value={data.name}
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            error={errors.name}
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <TextField
+                                                            label="Email"
+                                                            name="email"
+                                                            value={data.email}
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            error={errors.email}
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <TextField
+                                                            label="Password"
+                                                            type="password"
+                                                            name="password"
+                                                            value={
+                                                                data.password
+                                                            }
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            error={
+                                                                errors.password
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <TextField
+                                                            label="Type of your blog (Optional)"
+                                                            name="typeOfBlog"
+                                                            value={
+                                                                data.typeOfBlog
+                                                            }
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            error={
+                                                                errors.typeOfBlog
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <TextField
+                                                            label="Instagram (Optional)"
+                                                            name="instagram"
+                                                            value={
+                                                                data.instagram
+                                                            }
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            error={
+                                                                errors.instagram
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <TextField
+                                                            label="Pinterest (Optional)"
+                                                            name="pinterest"
+                                                            value={
+                                                                data.pinterest
+                                                            }
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            error={
+                                                                errors.pinterest
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <TextField
+                                                            label="Github (Optional)"
+                                                            name="github"
+                                                            value={data.github}
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            error={
+                                                                errors.github
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <TextField
+                                                            label="Facebook (Optional)"
+                                                            name="facebook"
+                                                            value={
+                                                                data.facebook
+                                                            }
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            error={
+                                                                errors.facebook
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <TextField
+                                                            label="Twitter (Optional)"
+                                                            name="twitter"
+                                                            value={data.twitter}
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            error={
+                                                                errors.twitter
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <FileUpload
+                                                            name="avatar"
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            error={
+                                                                errors.avatar
+                                                            }
+                                                        />
+                                                        <FileList
+                                                            file={data.avatar}
+                                                            removeFile={
+                                                                handleRemoveFile
+                                                            }
+                                                        />
+                                                    </div>
                                                     <button
                                                         type="submit"
                                                         disabled={!isValid}

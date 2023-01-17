@@ -5,6 +5,7 @@ import { displayDate } from "../../../utils/displayDate";
 import { getArticles, getArticlesLoadingStatus } from "../../../store/articles";
 import { getRandomArticles } from "../../../utils/helpers";
 import config from "../../../config.json";
+import CardSkeletonRandomArticles from "../cardSkeletonRandomArticles";
 
 const RandomArticles = () => {
     const articlesLoading = useSelector(getArticlesLoadingStatus());
@@ -26,6 +27,10 @@ const RandomArticles = () => {
                                         src={`${config.pathToCover}${a.cover.path}`}
                                         className="card-img-top"
                                         alt="cover"
+                                        style={{
+                                            maxWidth: "350px",
+                                            maxHeight: "350px"
+                                        }}
                                     />
                                 </NavLink>
                                 <div className="card-body fw-bold">
@@ -41,6 +46,7 @@ const RandomArticles = () => {
             </div>
         );
     }
+    return <CardSkeletonRandomArticles />;
 };
 
 export default RandomArticles;

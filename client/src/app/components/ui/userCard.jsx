@@ -1,10 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getCurrentUserData } from "../../store/users";
+import {
+    getCurrentUserData,
+    getIsLoggedIn,
+    getUsersLoadingStatus
+} from "../../store/users";
 import config from "../../config.json";
 
 const UserCard = () => {
+    const isLoggedIn = useSelector(getIsLoggedIn());
+    const usersLoading = useSelector(getUsersLoadingStatus());
     const currentUser = useSelector(getCurrentUserData());
     const navigate = useNavigate();
 
@@ -15,7 +21,7 @@ const UserCard = () => {
         navigate(`/add/article`);
     };
 
-    if (currentUser) {
+    if (currentUser && !usersLoading && isLoggedIn) {
         return (
             <div
                 className="user-card position-fixed top-0 start-0"
@@ -61,7 +67,11 @@ const UserCard = () => {
                         </div>
                         <div className="position mb-2 translate-middle-y">
                             {currentUser.instagram && (
-                                <a href={currentUser.instagram}>
+                                <a
+                                    href={currentUser.instagram}
+                                    rel="noreferrer"
+                                    target="_blank"
+                                >
                                     <img
                                         src="/images/instagram.png"
                                         className="rounded rounded-circle me-1"
@@ -72,7 +82,11 @@ const UserCard = () => {
                                 </a>
                             )}
                             {currentUser.pinterest && (
-                                <a href={currentUser.pinterest}>
+                                <a
+                                    href={currentUser.pinterest}
+                                    rel="noreferrer"
+                                    target="_blank"
+                                >
                                     <img
                                         src="/images/pinterest.png"
                                         className="rounded float rounded-circle me-1"
@@ -83,13 +97,47 @@ const UserCard = () => {
                                 </a>
                             )}
                             {currentUser.github && (
-                                <a href={currentUser.github}>
+                                <a
+                                    href={currentUser.github}
+                                    rel="noreferrer"
+                                    target="_blank"
+                                >
                                     <img
                                         src="/images/github.png"
                                         className="rounded float rounded-circle me-1"
                                         width="30"
                                         height="30"
                                         alt="github"
+                                    />
+                                </a>
+                            )}
+                            {currentUser.facebook && (
+                                <a
+                                    href={currentUser.facebook}
+                                    rel="noreferrer"
+                                    target="_blank"
+                                >
+                                    <img
+                                        src="/images/facebook.png"
+                                        className="rounded float rounded-circle me-1"
+                                        width="30"
+                                        height="30"
+                                        alt="facebook"
+                                    />
+                                </a>
+                            )}
+                            {currentUser.twitter && (
+                                <a
+                                    href={currentUser.twitter}
+                                    rel="noreferrer"
+                                    target="_blank"
+                                >
+                                    <img
+                                        src="/images/twitter.png"
+                                        className="rounded float rounded-circle me-1"
+                                        width="30"
+                                        height="30"
+                                        alt="twitter"
                                     />
                                 </a>
                             )}

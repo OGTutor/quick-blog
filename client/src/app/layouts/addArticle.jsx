@@ -102,19 +102,23 @@ const AddArticle = () => {
                                     action=""
                                     method="post"
                                 >
-                                    <TextField
-                                        label="Title of article"
-                                        name="title"
-                                        value={data.title}
-                                        onChange={handleChange}
-                                        error={errors.title}
-                                    />
-                                    <TextField
-                                        label="Description of article (Optional)"
-                                        name="description"
-                                        value={data.description}
-                                        onChange={handleChange}
-                                    />
+                                    <div className="mb-3">
+                                        <TextField
+                                            label="Title of article"
+                                            name="title"
+                                            value={data.title}
+                                            onChange={handleChange}
+                                            error={errors.title}
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <TextField
+                                            label="Description of article (Optional)"
+                                            name="description"
+                                            value={data.description}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
                                     <TextAreaField
                                         label="Content of article"
                                         name="content"
@@ -122,12 +126,14 @@ const AddArticle = () => {
                                         onChange={handleChange}
                                         error={errors.content}
                                     />
-                                    <TextField
-                                        label="Themes of article (Specify with a comma)"
-                                        name="themes"
-                                        value={data.themes}
-                                        onChange={handleChange}
-                                    />
+                                    <div className="mb-3">
+                                        <TextField
+                                            label="Themes of article (Specify with a comma)"
+                                            name="themes"
+                                            value={data.themes}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
                                     <p className="title text-white">
                                         Upload cover for your article
                                     </p>

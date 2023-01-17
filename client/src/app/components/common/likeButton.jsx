@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateArticle } from "../../store/articles";
-import { getCurrentUserId } from "../../store/users";
+import { getCurrentUserId, getIsLoggedIn } from "../../store/users";
 
 const LikeButton = ({ articlesLoading, currentArticle }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [data, setData] = useState();
     const [likedUser, setLikedUser] = useState(false);
+    const isLoggedIn = useSelector(getIsLoggedIn());
     const currentUserId = useSelector(getCurrentUserId());
 
     useEffect(() => {
@@ -24,6 +27,7 @@ const LikeButton = ({ articlesLoading, currentArticle }) => {
             setLikedUser(false);
         }
     }, [currentUserId, articlesLoading, currentArticle, data, likedUser]);
+
     const toggleLikeArticle = () => {
         if (likedUser) {
             setLikedUser(false);
@@ -50,6 +54,18 @@ const LikeButton = ({ articlesLoading, currentArticle }) => {
         }
     };
 
+    if (!isLoggedIn) {
+        return (
+            <button
+                className="btn btn-outline-danger"
+                onClick={() => navigate("/login")}
+            >
+                <i className={"bi bi-heart-fill"}>
+                    {` → ${data?.likedUsers.length}`}
+                </i>
+            </button>
+        );
+    }
     if (!articlesLoading && currentArticle && data) {
         return (
             <button

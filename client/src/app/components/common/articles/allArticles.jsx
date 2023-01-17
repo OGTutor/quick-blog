@@ -10,6 +10,7 @@ import {
     loadArticlesList,
     getArticlesLoadingStatus
 } from "../../../store/articles";
+import CardSkeletonAllArticles from "../cardSkeletonAllArticles";
 
 const AllArticles = () => {
     const dispatch = useDispatch();
@@ -50,14 +51,12 @@ const AllArticles = () => {
         return (
             <>
                 {articlesCrop.map((a) => (
-                    <>
-                        <Article
-                            key={a._id}
-                            article={a}
-                            articlesLoading={articlesLoading}
-                            goToArticlePage={handleGoToArticlePage}
-                        />
-                    </>
+                    <Article
+                        key={a._id}
+                        article={a}
+                        articlesLoading={articlesLoading}
+                        goToArticlePage={handleGoToArticlePage}
+                    />
                 ))}
                 <div className="d-flex justify-content-center">
                     <Pagination
@@ -71,15 +70,7 @@ const AllArticles = () => {
             </>
         );
     }
-    return (
-        <div className="container mt-5">
-            <div className="row">
-                <div className="col-md-6 offset-md-3 shadow p-4">
-                    <h1>Loading...</h1>
-                </div>
-            </div>
-        </div>
-    );
+    return <CardSkeletonAllArticles />;
 };
 
 export default AllArticles;

@@ -38,12 +38,14 @@ const TextField = ({
                 placeholder={label}
                 ref={reference}
             />
-            <button
-                className="btn btn-outline-primary"
-                onClick={handleCopyValue}
-            >
-                Copy
-            </button>
+            {name === "postUri" && (
+                <button
+                    className="btn btn-outline-primary"
+                    onClick={handleCopyValue}
+                >
+                    Copy
+                </button>
+            )}
             {type === "password" && (
                 <button
                     className="btn btn-outline-secondary"

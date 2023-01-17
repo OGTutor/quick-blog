@@ -13,17 +13,24 @@ const Article = ({ article, articlesLoading, goToArticlePage }) => {
                     src={`${config.pathToCover}${article.cover.path}`}
                     className="card-img-top"
                     alt={article.cover.fieldname}
+                    style={{ maxWidth: "1200px", maxHeight: "700px" }}
                 />
                 <div className="card-body">
                     <h5 className="card-title text-white">{article.title}</h5>
                     <p className="card-text text-white">
                         {article.description}
                     </p>
-                    <div className="mb-3">
+                    <div className="d-flex justify-content-between mb-3">
                         <LikeButton
                             articlesLoading={articlesLoading}
                             currentArticle={article}
                         />
+                        <button
+                            className="btn btn-outline-primary"
+                            onClick={() => goToArticlePage(article._id)}
+                        >
+                            Read
+                        </button>
                     </div>
                     <p className="card-text">
                         <small className="text-secondary font-monospace">
@@ -38,12 +45,6 @@ const Article = ({ article, articlesLoading, goToArticlePage }) => {
                                     {`${t}`}
                                 </span>
                             ))}
-                        <button
-                            className="btn btn-outline-primary position-absolute bottom-0 end-0 mb-5 me-3"
-                            onClick={() => goToArticlePage(article._id)}
-                        >
-                            Read
-                        </button>
                     </p>
                 </div>
             </div>

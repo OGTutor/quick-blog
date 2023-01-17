@@ -14,35 +14,31 @@ const ArticleCard = ({ article, articlesLoading, currentArticle }) => {
     return (
         <>
             <div className="card-body">
-                <div className="d-flex mb-2">
+                <div className="d-flex justify-content-between">
+                    <NavLink
+                        to="/"
+                        className="card-link text-secondary text-decoration-none"
+                    >
+                        come back
+                    </NavLink>
+                    <button
+                        className="btn btn-outline-secondary"
+                        onClick={() => setModalActive(true)}
+                    >
+                        <small className="p-1">Share </small>
+                        <i
+                            className={
+                                modalActive ? "bi bi-share-fill" : "bi bi-share"
+                            }
+                        ></i>
+                    </button>
+                </div>
+                <div className="d-flex">
                     <Modal
                         active={modalActive}
                         setActive={setModalActive}
                         article={article}
                     />
-                    <div className="p-2">
-                        <NavLink
-                            to="/"
-                            className="card-link text-secondary text-decoration-none"
-                        >
-                            come back
-                        </NavLink>
-                    </div>
-                    <div className="text-secondary p-2 ms-auto">
-                        <button
-                            className="btn btn-outline-secondary"
-                            onClick={() => setModalActive(true)}
-                        >
-                            Share
-                            <i
-                                className={
-                                    modalActive
-                                        ? "bi bi-share-fill"
-                                        : "bi bi-share"
-                                }
-                            ></i>
-                        </button>
-                    </div>
                 </div>
                 <h3 className="card-title text-white">{article.title}</h3>
                 <div className="mb-2">

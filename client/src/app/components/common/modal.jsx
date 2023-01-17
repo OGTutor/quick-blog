@@ -72,6 +72,7 @@ const Modal = ({ active, setActive, article }) => {
                             value={postUri}
                             reference={inputEl}
                             handleCopyValue={handleCopyValue}
+                            name="postUri"
                         />
                     </div>
                 </div>

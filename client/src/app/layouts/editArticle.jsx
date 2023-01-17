@@ -89,7 +89,7 @@ const EditArticle = () => {
                             style={{ width: "70rem" }}
                         >
                             <div className="card-body">
-                                <div className="mb-2">
+                                <div className="mb-3">
                                     <NavLink
                                         to={`/articles/user/${currentUserId}`}
                                         className="card-link text-secondary text-decoration-none"
@@ -103,32 +103,40 @@ const EditArticle = () => {
                                     action=""
                                     method="post"
                                 >
-                                    <TextField
-                                        label="Title of article"
-                                        name="title"
-                                        value={data.title}
-                                        onChange={handleChange}
-                                        error={errors.title}
-                                    />
-                                    <TextField
-                                        label="Themes of article"
-                                        name="themes"
-                                        value={data.themes}
-                                        onChange={handleChange}
-                                        error={errors.themes}
-                                    />
-                                    <TextField
-                                        label="Description of article"
-                                        name="description"
-                                        value={data.description}
-                                        onChange={handleChange}
-                                        error={errors.description}
-                                    />
-                                    <img
-                                        src={`${config.pathToCover}${currentArticle.cover.path}`}
-                                        className="card-img-bottom"
-                                        alt="cover"
-                                    />
+                                    <div className="mb-3">
+                                        <TextField
+                                            label="Title of article"
+                                            name="title"
+                                            value={data.title}
+                                            onChange={handleChange}
+                                            error={errors.title}
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <TextField
+                                            label="Themes of article"
+                                            name="themes"
+                                            value={data.themes}
+                                            onChange={handleChange}
+                                            error={errors.themes}
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <TextField
+                                            label="Description of article"
+                                            name="description"
+                                            value={data.description}
+                                            onChange={handleChange}
+                                            error={errors.description}
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <img
+                                            src={`${config.pathToCover}${currentArticle.cover.path}`}
+                                            className="card-img-bottom"
+                                            alt="cover"
+                                        />
+                                    </div>
                                     <FileUpload
                                         name="cover"
                                         onChange={handleChange}

@@ -32,6 +32,8 @@ const Profile = () => {
         updatedUser.append("instagram", data.instagram);
         updatedUser.append("pinterest", data.pinterest);
         updatedUser.append("github", data.github);
+        updatedUser.append("facebook", data.facebook);
+        updatedUser.append("twitter", data.twitter);
         updatedUser.append("avatar", data.avatar);
         dispatch(updateUser({ payload: updatedUser, navigate }));
     };
@@ -90,62 +92,98 @@ const Profile = () => {
                                     <h2 className="text-white">Profile</h2>
                                     <div className="mt-5">
                                         <form onSubmit={handleSubmit}>
-                                            <TextField
-                                                name="name"
-                                                value={data.name}
-                                                onChange={handleChange}
-                                                error={errors.name}
-                                            />
-                                            <TextField
-                                                name="email"
-                                                value={data.email}
-                                                onChange={handleChange}
-                                                error={errors.email}
-                                            />
-                                            <TextField
-                                                label="Type of your blog"
-                                                name="typeOfBlog"
-                                                value={data.typeOfBlog}
-                                                onChange={handleChange}
-                                                error={errors.typeOfBlog}
-                                            />
-                                            <TextAreaField
-                                                label="Biography"
-                                                name="biography"
-                                                value={data.biography}
-                                                onChange={handleChange}
-                                                error={errors.biography}
-                                            />
-                                            <TextField
-                                                label="Instagram"
-                                                name="instagram"
-                                                value={data.instagram}
-                                                onChange={handleChange}
-                                                error={errors.instagram}
-                                            />
-                                            <TextField
-                                                label="Pinterest"
-                                                name="pinterest"
-                                                value={data.pinterest}
-                                                onChange={handleChange}
-                                                error={errors.pinterest}
-                                            />
-                                            <TextField
-                                                label="GitHub"
-                                                name="github"
-                                                value={data.github}
-                                                onChange={handleChange}
-                                                error={errors.github}
-                                            />
-                                            <FileUpload
-                                                name="avatar"
-                                                onChange={handleChange}
-                                                error={errors.avatar}
-                                            />
-                                            <FileList
-                                                file={data.avatar}
-                                                removeFile={handleRemoveFile}
-                                            />
+                                            <div className="mb-4">
+                                                <TextField
+                                                    name="name"
+                                                    value={data.name}
+                                                    onChange={handleChange}
+                                                    error={errors.name}
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <TextField
+                                                    name="email"
+                                                    value={data.email}
+                                                    onChange={handleChange}
+                                                    error={errors.email}
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <TextField
+                                                    label="Type of your blog"
+                                                    name="typeOfBlog"
+                                                    value={data.typeOfBlog}
+                                                    onChange={handleChange}
+                                                    error={errors.typeOfBlog}
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <TextAreaField
+                                                    label="Biography"
+                                                    name="biography"
+                                                    value={data.biography}
+                                                    onChange={handleChange}
+                                                    error={errors.biography}
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <TextField
+                                                    label="Instagram"
+                                                    name="instagram"
+                                                    value={data.instagram}
+                                                    onChange={handleChange}
+                                                    error={errors.instagram}
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <TextField
+                                                    label="Pinterest"
+                                                    name="pinterest"
+                                                    value={data.pinterest}
+                                                    onChange={handleChange}
+                                                    error={errors.pinterest}
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <TextField
+                                                    label="GitHub"
+                                                    name="github"
+                                                    value={data.github}
+                                                    onChange={handleChange}
+                                                    error={errors.github}
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <TextField
+                                                    label="Facebook"
+                                                    name="facebook"
+                                                    value={data.facebook}
+                                                    onChange={handleChange}
+                                                    error={errors.facebook}
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <TextField
+                                                    label="Twitter"
+                                                    name="twitter"
+                                                    value={data.twitter}
+                                                    onChange={handleChange}
+                                                    error={errors.twitter}
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <FileUpload
+                                                    name="avatar"
+                                                    onChange={handleChange}
+                                                    error={errors.avatar}
+                                                />
+                                                <FileList
+                                                    file={data.avatar}
+                                                    removeFile={
+                                                        handleRemoveFile
+                                                    }
+                                                />
+                                            </div>
                                             <button
                                                 type="submit"
                                                 disabled={!isValid}
@@ -164,8 +202,8 @@ const Profile = () => {
                                                 : `${config.pathToCover}${currentUser.avatar.path}`
                                         }
                                         className="rounded-circle border border-white bg-dark mt-5"
-                                        width="150px"
-                                        height="150px"
+                                        width="250px"
+                                        height="250px"
                                         alt="avatar"
                                     />
                                 </div>

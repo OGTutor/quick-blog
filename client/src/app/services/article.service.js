@@ -1,5 +1,4 @@
 import httpService from "./http.service";
-import localStorageService from "./localStorage.service";
 
 const articleEndPoint = "article/";
 
