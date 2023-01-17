@@ -58,6 +58,78 @@ code {
     font-size: 1.2rem;
 }
 
+.modal {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 15px;
+    left: 0;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    z-index: 100;
+    transform: scale(0);
+    transition: 0.5s;
+    border-radius: 5px;
+    .modal__content {
+        position: sticky;
+        top: 20%;
+        left: auto;
+        padding: 20px;
+        border-radius: 12px;
+        background-color: #212529;
+        height: 200px;
+        width: 400px;
+        transform: scale(0.5);
+        transition: 0.4s all;
+    }
+    .modal__content.active {
+        transform: scale(1);
+    }
+}
+.modal.active {
+    transform: scale(1);
+}
+
+.facebook-btn {
+    height: 50px;
+    width: 50px;
+    color: #1877f2;
+    background: #f8f9fa;
+    border-radius: 25px;
+    margin-right: 20px;
+    transition: 0.3s ease-in-out;
+}
+.facebook-btn:hover {
+    height: 45px;
+    width: 45px;
+    transition: 0.3s ease-in-out;
+}
+.twitter-btn {
+    height: 50px;
+    width: 50px;
+    color: #1da1f2;
+    margin-right: 20px;
+    transition: 0.3s ease-in-out;
+}
+.twitter-btn:hover {
+    height: 45px;
+    width: 45px;
+    transition: 0.3s ease-in-out;
+}
+.pinterest-btn {
+    height: 50px;
+    width: 50px;
+    color: #e60023;
+    transition: 0.3s ease-in-out;
+}
+.pinterest-btn:hover {
+    height: 45px;
+    width: 45px;
+    transition: 0.3s ease-in-out;
+}
+
 @media screen and (max-width: 1900px) {
     .user-card {
         display: none;

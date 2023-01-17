@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { displayDate } from "../../../utils/displayDate";
 import { NavLink } from "react-router-dom";
@@ -6,18 +6,43 @@ import { stringToArray } from "../../../utils/helpers";
 import config from "../../../config.json";
 import LikeButton from "../../common/likeButton";
 import RandomArticles from "./randomArticles";
+import Modal from "../../common/modal";
 
 const ArticleCard = ({ article, articlesLoading, currentArticle }) => {
+    const [modalActive, setModalActive] = useState(false);
+
     return (
         <>
             <div className="card-body">
-                <div className="mb-2">
-                    <NavLink
-                        to="/"
-                        className="card-link text-secondary text-decoration-none"
-                    >
-                        come back
-                    </NavLink>
+                <div className="d-flex mb-2">
+                    <Modal
+                        active={modalActive}
+                        setActive={setModalActive}
+                        article={article}
+                    />
+                    <div className="p-2">
+                        <NavLink
+                            to="/"
+                            className="card-link text-secondary text-decoration-none"
+                        >
+                            come back
+                        </NavLink>
+                    </div>
+                    <div className="text-secondary p-2 ms-auto">
+                        <button
+                            className="btn btn-outline-secondary"
+                            onClick={() => setModalActive(true)}
+                        >
+                            Share
+                            <i
+                                className={
+                                    modalActive
+                                        ? "bi bi-share-fill"
+                                        : "bi bi-share"
+                                }
+                            ></i>
+                        </button>
+                    </div>
                 </div>
                 <h3 className="card-title text-white">{article.title}</h3>
                 <div className="mb-2">
