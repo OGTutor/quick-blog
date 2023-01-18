@@ -14,6 +14,7 @@ import TextField from "../components/common/form/textField";
 import FileUpload from "../components/common/form/fileUpload";
 import FileList from "../components/common/form/fileList";
 import TextAreaField from "../components/common/form/textAreaField";
+import { updateDataArticle } from "../utils/helpers";
 
 const EditArticle = () => {
     const { id } = useParams();
@@ -62,14 +63,7 @@ const EditArticle = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const updatedData = new FormData();
-        updatedData.append("title", data.title);
-        updatedData.append("description", data.description);
-        updatedData.append("content", data.content);
-        updatedData.append("themes", data.themes);
-        updatedData.append("cover", data.cover);
-        updatedData.append("likes", data.likes);
-        updatedData.append("likedUsers", data.likedUsers);
+        const updatedData = updateDataArticle(data);
         dispatch(
             updateArticle({ payload: updatedData, articleId: id, navigate })
         );

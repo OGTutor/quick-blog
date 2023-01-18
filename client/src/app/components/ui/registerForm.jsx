@@ -7,6 +7,7 @@ import UserCard from "./userCard";
 import TextField from "../common/form/textField";
 import FileUpload from "../common/form/fileUpload";
 import FileList from "../common/form/fileList";
+import { updateDataUser } from "../../utils/helpers";
 
 const RegisterForm = () => {
     const dispatch = useDispatch();
@@ -89,19 +90,7 @@ const RegisterForm = () => {
         event.preventDefault();
         const isValid = validate();
         if (!isValid) return null;
-        const updatedUser = new FormData();
-        updatedUser.append("name", data.name);
-        updatedUser.append("email", data.email);
-        updatedUser.append("password", data.password);
-        updatedUser.append("typeOfBlog", data.typeOfBlog);
-        updatedUser.append("biography", data.biography);
-        updatedUser.append("instagram", data.instagram);
-        updatedUser.append("pinterest", data.pinterest);
-        updatedUser.append("github", data.github);
-        updatedUser.append("facebook", data.facebook);
-        updatedUser.append("twitter", data.twitter);
-        updatedUser.append("avatar", data.avatar);
-
+        const updatedUser = updateDataUser(data);
         dispatch(signUp({ payload: updatedUser, navigate }));
     };
 

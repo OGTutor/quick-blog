@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { orderBy } from "lodash";
+import _ from "lodash";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { paginate } from "../../../utils/paginate";
@@ -11,19 +11,24 @@ import {
     getArticlesLoadingStatus
 } from "../../../store/articles";
 import CardSkeletonAllArticles from "../cardSkeletonAllArticles";
+import { filterArticles } from "../../../utils/helpers";
 
 const AllArticles = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const articlesLoading = useSelector(getArticlesLoadingStatus());
     const articles = useSelector(getArticles());
-    const sortedArticles = orderBy(articles, ["created_at"], ["desc"]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [sortBy, setSortBy] = useState({ iter: "created_at", order: "desc" });
     const pageSize = 4;
 
     useEffect(() => {
         dispatch(loadArticlesList());
     }, []);
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchQuery]);
 
     const handlePageChange = (pageIndex) => {
         setCurrentPage(pageIndex);
@@ -41,15 +46,46 @@ const AllArticles = () => {
         }
     };
 
+    const handleSearchQuery = ({ target }) => {
+        setSearchQuery(target.value);
+    };
+
+    const handleSort = (item) => {
+        setSortBy(item);
+    };
+
     const handleGoToArticlePage = (id) => {
         navigate(`/article/${id}`);
     };
 
-    if (sortedArticles.length > 0 && !articlesLoading) {
-        const countOfArticles = articles.length;
+    if (articles && !articlesLoading) {
+        const filteredArticles = filterArticles(articles, searchQuery);
+        const count = filteredArticles.length;
+        const sortedArticles = _.orderBy(
+            filteredArticles,
+            [sortBy.path],
+            [sortBy.order]
+        );
         const articlesCrop = paginate(sortedArticles, currentPage, pageSize);
         return (
             <>
+                <div className="position-fixed top-0 start-0">
+                    <div className="search-box-bg">
+                        <div className="search-box">
+                            <input
+                                type="text"
+                                name="searchQuery"
+                                placeholder="Search..."
+                                className="search-query"
+                                onChange={handleSearchQuery}
+                                value={searchQuery}
+                            />
+                            <a className="search-btn">
+                                <i className="bi bi-search"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 {articlesCrop.map((a) => (
                     <Article
                         key={a._id}
@@ -60,7 +96,7 @@ const AllArticles = () => {
                 ))}
                 <div className="d-flex justify-content-center">
                     <Pagination
-                        itemsCount={countOfArticles}
+                        itemsCount={count}
                         pageSize={pageSize}
                         currentPage={currentPage}
                         onPageChange={handlePageChange}

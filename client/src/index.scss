@@ -30,6 +30,9 @@ code {
 .mt-register {
     margin-top: ($spacer * 6) !important;
 }
+.mt-home {
+    margin-top: ($spacer * 4.7) !important;
+}
 .mt-6 {
     margin-top: ($spacer * 11) !important;
 }
@@ -128,6 +131,52 @@ code {
     height: 45px;
     width: 45px;
     transition: 0.3s ease-in-out;
+}
+
+.search-box-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 80px;
+    width: 100%;
+    .search-box {
+        position: fixed;
+        top: 0;
+        left: 55%;
+        transform: translate(-50%, 50%);
+        background: #2f3640;
+        height: 40px;
+        border-radius: 40px;
+        z-index: 100;
+        .search-btn {
+            color: #1da1f3;
+            float: right;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2f3640;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+        .search-query {
+            border: none;
+            background: none;
+            outline: none;
+            float: left;
+            color: white;
+            font-size: 16px;
+            transition: 0.4s;
+            line-height: 40px;
+            padding-left: 15px;
+            width: 0px;
+        }
+    }
+}
+.search-box-bg:hover > .search-box .search-query {
+    width: 240px;
+    padding: 0 6px;
 }
 
 @media screen and (max-width: 1900px) {

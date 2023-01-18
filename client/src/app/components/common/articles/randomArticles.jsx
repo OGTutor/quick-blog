@@ -15,7 +15,7 @@ const RandomArticles = () => {
         const randomArticles = getRandomArticles(articles);
         return (
             <div
-                className="container text-center mt-4"
+                className="container text-center mt-home"
                 style={{ width: "72rem" }}
             >
                 <div className="row">

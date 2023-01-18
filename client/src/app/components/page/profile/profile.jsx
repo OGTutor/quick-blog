@@ -9,6 +9,7 @@ import config from "../../../config.json";
 import FileUpload from "../../common/form/fileUpload";
 import FileList from "../../common/form/fileList";
 import TextAreaField from "../../common/form/textAreaField";
+import { updateDataUser } from "../../../utils/helpers";
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -22,19 +23,7 @@ const Profile = () => {
         event.preventDefault();
         const isValid = validate();
         if (!isValid) return null;
-
-        const updatedUser = new FormData();
-        updatedUser.append("name", data.name);
-        updatedUser.append("email", data.email);
-        updatedUser.append("password", data.password);
-        updatedUser.append("typeOfBlog", data.typeOfBlog);
-        updatedUser.append("biography", data.biography);
-        updatedUser.append("instagram", data.instagram);
-        updatedUser.append("pinterest", data.pinterest);
-        updatedUser.append("github", data.github);
-        updatedUser.append("facebook", data.facebook);
-        updatedUser.append("twitter", data.twitter);
-        updatedUser.append("avatar", data.avatar);
+        const updatedUser = updateDataUser(data);
         dispatch(updateUser({ payload: updatedUser, navigate }));
     };
 
