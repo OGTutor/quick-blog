@@ -58,7 +58,7 @@ const AllArticles = () => {
         navigate(`/article/${id}`);
     };
 
-    if (articles && !articlesLoading) {
+    if (articles?.length > 0 && !articlesLoading) {
         const filteredArticles = filterArticles(articles, searchQuery);
         const count = filteredArticles.length;
         const sortedArticles = _.orderBy(
@@ -69,7 +69,7 @@ const AllArticles = () => {
         const articlesCrop = paginate(sortedArticles, currentPage, pageSize);
         return (
             <>
-                <div className="position-fixed top-0 start-0">
+                {articles.length > 0 && (
                     <div className="search-box-bg">
                         <div className="search-box">
                             <input
@@ -85,7 +85,7 @@ const AllArticles = () => {
                             </a>
                         </div>
                     </div>
-                </div>
+                )}
                 {articlesCrop.map((a) => (
                     <Article
                         key={a._id}

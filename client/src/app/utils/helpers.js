@@ -9,8 +9,12 @@ export function stringToArray(string) {
 
 export function getRandomArticles(articles) {
     const randomArticles = [];
-    for (let i = 0; i < 3; i++) {
-        randomArticles.push(arrayRandElement(articles));
+    if (articles) {
+        for (let i = 0; i < 3; i++) {
+            randomArticles.push(arrayRandElement(articles));
+        }
+    } else {
+        return null;
     }
     if (randomArticles.length > 0 && randomArticles.length <= 4) {
         return randomArticles;

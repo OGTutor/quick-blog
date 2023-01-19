@@ -10,9 +10,9 @@ import CardSkeletonRandomArticles from "../cardSkeletonRandomArticles";
 const RandomArticles = () => {
     const articlesLoading = useSelector(getArticlesLoadingStatus());
     const articles = useSelector(getArticles());
+    const randomArticles = getRandomArticles(articles);
 
     if (!articlesLoading && articles?.length > 0) {
-        const randomArticles = getRandomArticles(articles);
         return (
             <div
                 className="container text-center mt-home"

@@ -179,6 +179,54 @@ code {
     padding: 0 6px;
 }
 
+.search-box-user-articles-bg {
+    position: fixed;
+    top: 6%;
+    left: 0;
+    height: 55px;
+    width: 100%;
+    .search-box-user-articles {
+        position: fixed;
+        top: 5%;
+        left: 61%;
+        transform: translate(-50%, 50%);
+        background: #2f3640;
+        height: 40px;
+        border-radius: 40px;
+        z-index: 100;
+        .search-btn-user-articles {
+            color: #1da1f3;
+            float: right;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2f3640;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+        .search-query-user-articles {
+            border: none;
+            background: none;
+            outline: none;
+            float: left;
+            color: white;
+            font-size: 16px;
+            transition: 0.4s;
+            line-height: 40px;
+            padding-left: 15px;
+            width: 0px;
+        }
+    }
+}
+.search-box-user-articles-bg:hover
+    > .search-box-user-articles
+    .search-query-user-articles {
+    width: 240px;
+    padding: 0 6px;
+}
+
 @media screen and (max-width: 1900px) {
     .user-card {
         display: none;
