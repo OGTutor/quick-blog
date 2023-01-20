@@ -50,15 +50,48 @@ export function updateDataArticle(data) {
 }
 
 export function filterArticles(data, searchQuery) {
-    let filteredArticles;
     if (searchQuery) {
-        filteredArticles = data.filter(
+        const filteredArticlesByTitle = data.filter(
             (article) =>
                 article.title
                     .toLowerCase()
                     .indexOf(searchQuery.toLowerCase()) !== -1
         );
-        return filteredArticles;
+        if (filteredArticlesByTitle.length > 0) {
+            return filteredArticlesByTitle;
+        } else {
+            const filteredArticlesByDescription = data.filter(
+                (article) =>
+                    article.description
+                        .toLowerCase()
+                        .indexOf(searchQuery.toLowerCase()) !== -1
+            );
+            if (filteredArticlesByDescription.length > 0) {
+                return filteredArticlesByDescription;
+            } else {
+                const filteredArticlesByContent = data.filter(
+                    (article) =>
+                        article.content
+                            .toLowerCase()
+                            .indexOf(searchQuery.toLowerCase()) !== -1
+                );
+                if (filteredArticlesByContent.length > 0) {
+                    return filteredArticlesByContent;
+                } else {
+                    const filteredArticlesByThemes = data.filter(
+                        (article) =>
+                            article.themes
+                                .toLowerCase()
+                                .indexOf(searchQuery.toLowerCase()) !== -1
+                    );
+                    if (filteredArticlesByThemes.length > 0) {
+                        return filteredArticlesByThemes;
+                    } else {
+                        return undefined;
+                    }
+                }
+            }
+        }
     }
     return data;
 }

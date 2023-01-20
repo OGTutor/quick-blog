@@ -36,6 +36,9 @@ code {
 .mt-6 {
     margin-top: ($spacer * 11) !important;
 }
+.mt-user-articles {
+    margin-top: ($spacer * 8) !important;
+}
 
 .btn-like {
     display: none;
@@ -141,8 +144,8 @@ code {
     width: 100%;
     .search-box {
         position: fixed;
-        top: 0;
-        left: 55%;
+        top: -3px;
+        left: 70%;
         transform: translate(-50%, 50%);
         background: #2f3640;
         height: 40px;
@@ -182,13 +185,13 @@ code {
 .search-box-user-articles-bg {
     position: fixed;
     top: 6%;
-    left: 0;
+    left: 29%;
     height: 55px;
     width: 100%;
     .search-box-user-articles {
         position: fixed;
-        top: 5%;
-        left: 61%;
+        top: 5.7%;
+        left: 75%;
         transform: translate(-50%, 50%);
         background: #2f3640;
         height: 40px;

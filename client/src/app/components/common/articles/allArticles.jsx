@@ -12,6 +12,7 @@ import {
 } from "../../../store/articles";
 import CardSkeletonAllArticles from "../cardSkeletonAllArticles";
 import { filterArticles } from "../../../utils/helpers";
+import SortingElements from "./sortingElements";
 
 const AllArticles = () => {
     const dispatch = useDispatch();
@@ -46,45 +47,30 @@ const AllArticles = () => {
         }
     };
 
-    const handleSearchQuery = ({ target }) => {
-        setSearchQuery(target.value);
-    };
-
-    const handleSort = (item) => {
-        setSortBy(item);
-    };
-
     const handleGoToArticlePage = (id) => {
         navigate(`/article/${id}`);
     };
 
     if (articles?.length > 0 && !articlesLoading) {
         const filteredArticles = filterArticles(articles, searchQuery);
-        const count = filteredArticles.length;
+        const count = filteredArticles?.length;
         const sortedArticles = _.orderBy(
             filteredArticles,
-            [sortBy.path],
+            [sortBy.iter],
             [sortBy.order]
         );
         const articlesCrop = paginate(sortedArticles, currentPage, pageSize);
         return (
             <>
                 {articles.length > 0 && (
-                    <div className="search-box-bg">
-                        <div className="search-box">
-                            <input
-                                type="text"
-                                name="searchQuery"
-                                placeholder="Search..."
-                                className="search-query"
-                                onChange={handleSearchQuery}
-                                value={searchQuery}
-                            />
-                            <a className="search-btn">
-                                <i className="bi bi-search"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <SortingElements
+                        setSearchQuery={setSearchQuery}
+                        setSortBy={setSortBy}
+                        searchQuery={searchQuery}
+                        sortBy={sortBy}
+                        page="home"
+                        setCurrentPage={setCurrentPage}
+                    />
                 )}
                 {articlesCrop.map((a) => (
                     <Article
@@ -94,15 +80,19 @@ const AllArticles = () => {
                         goToArticlePage={handleGoToArticlePage}
                     />
                 ))}
-                <div className="d-flex justify-content-center">
-                    <Pagination
-                        itemsCount={count}
-                        pageSize={pageSize}
-                        currentPage={currentPage}
-                        onPageChange={handlePageChange}
-                        onPageChangeNextPrevious={handlePageChangeNextPrevious}
-                    />
-                </div>
+                {count && (
+                    <div className="d-flex justify-content-center">
+                        <Pagination
+                            itemsCount={count}
+                            pageSize={pageSize}
+                            currentPage={currentPage}
+                            onPageChange={handlePageChange}
+                            onPageChangeNextPrevious={
+                                handlePageChangeNextPrevious
+                            }
+                        />
+                    </div>
+                )}
             </>
         );
     }

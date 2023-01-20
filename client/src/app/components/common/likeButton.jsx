@@ -34,7 +34,11 @@ const LikeButton = ({ articlesLoading, currentArticle }) => {
             const likedUsers = data.likedUsers.filter((id) => {
                 return id !== currentUserId;
             });
-            const updatedData = { ...data, likedUsers };
+            const updatedData = {
+                ...data,
+                likes: likedUsers.length,
+                likedUsers
+            };
             setData((prevState) => ({
                 ...prevState,
                 ...updatedData
@@ -49,7 +53,10 @@ const LikeButton = ({ articlesLoading, currentArticle }) => {
             setLikedUser(true);
             data.likedUsers.push(currentUserId);
             dispatch(
-                updateArticle({ payload: data, articleId: currentArticle._id })
+                updateArticle({
+                    payload: { ...data, likes: data.likedUsers.length },
+                    articleId: currentArticle._id
+                })
             );
         }
     };

@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import LikeButton from "../components/common/likeButton";
 import CardSkeletonUserArticles from "../components/common/cardSkeletonUserArticles";
 import { paginate } from "../utils/paginate";
+import SortingElements from "../components/common/articles/sortingElements";
 
 const UserArticles = () => {
     const navigate = useNavigate();
@@ -56,19 +57,13 @@ const UserArticles = () => {
     const handleEditArticle = (id) => {
         navigate(`/edit/article/${id}`);
     };
-    const handleSearchQuery = ({ target }) => {
-        setSearchQuery(target.value);
-    };
-    const handleSort = (item) => {
-        setSortBy(item);
-    };
 
     if (!articlesLoading) {
         const filteredArticles = filterArticles(articles, searchQuery);
-        const count = filteredArticles.length;
+        const count = filteredArticles?.length;
         const sortedArticles = _.orderBy(
             filteredArticles,
-            [sortBy.path],
+            [sortBy.iter],
             [sortBy.order]
         );
         const articlesCrop = paginate(sortedArticles, currentPage, pageSize);
@@ -77,24 +72,15 @@ const UserArticles = () => {
                 <UserCard />
                 {articles.length > 0 ? (
                     <>
-                        <div className="position-fixed top-0 start-0">
-                            <div className="search-box-user-articles-bg">
-                                <div className="search-box-user-articles">
-                                    <input
-                                        type="text"
-                                        name="searchQuery"
-                                        placeholder="Search..."
-                                        className="search-query-user-articles"
-                                        onChange={handleSearchQuery}
-                                        value={searchQuery}
-                                    />
-                                    <a className="search-btn-user-articles">
-                                        <i className="bi bi-search"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="position-relative ms-6 mt-5">
+                        <SortingElements
+                            setSearchQuery={setSearchQuery}
+                            setSortBy={setSortBy}
+                            searchQuery={searchQuery}
+                            sortBy={sortBy}
+                            page="userArticles"
+                            setCurrentPage={setCurrentPage}
+                        />
+                        <div className="position-relative ms-6 mt-user-articles">
                             <div className="position-absolute top-0 start-50 translate-middle-x">
                                 <h3 className="text-white mb-5 mt-4">
                                     My Articles
@@ -179,17 +165,19 @@ const UserArticles = () => {
                                         </div>
                                     </div>
                                 ))}
-                                <div className="d-flex justify-content-center">
-                                    <Pagination
-                                        itemsCount={count}
-                                        pageSize={pageSize}
-                                        currentPage={currentPage}
-                                        onPageChange={handlePageChange}
-                                        onPageChangeNextPrevious={
-                                            handlePageChangeNextPrevious
-                                        }
-                                    />
-                                </div>
+                                {count && (
+                                    <div className="d-flex justify-content-center">
+                                        <Pagination
+                                            itemsCount={count}
+                                            pageSize={pageSize}
+                                            currentPage={currentPage}
+                                            onPageChange={handlePageChange}
+                                            onPageChangeNextPrevious={
+                                                handlePageChangeNextPrevious
+                                            }
+                                        />
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </>

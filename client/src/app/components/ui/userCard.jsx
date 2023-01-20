@@ -1,16 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {
-    getCurrentUserData,
-    getIsLoggedIn,
-    getUsersLoadingStatus
-} from "../../store/users";
+import { getCurrentUserData, getIsLoggedIn } from "../../store/users";
 import config from "../../config.json";
 
 const UserCard = () => {
     const isLoggedIn = useSelector(getIsLoggedIn());
-    const usersLoading = useSelector(getUsersLoadingStatus());
     const currentUser = useSelector(getCurrentUserData());
     const navigate = useNavigate();
 
@@ -21,7 +16,7 @@ const UserCard = () => {
         navigate(`/add/article`);
     };
 
-    if (currentUser && !usersLoading && isLoggedIn) {
+    if (currentUser && isLoggedIn) {
         return (
             <div
                 className="user-card position-fixed top-0 start-0"
