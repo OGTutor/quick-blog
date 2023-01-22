@@ -17,7 +17,6 @@ const AddCommentForm = ({ onSubmit }) => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return null;
-        console.log("data", data);
         onSubmit(data);
         clearForm();
     };

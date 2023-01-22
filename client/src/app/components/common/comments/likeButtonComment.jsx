@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateArticle } from "../../store/articles";
-import { getCurrentUserId, getIsLoggedIn } from "../../store/users";
+import { getCurrentUserId } from "../../../store/users";
+import { updateComment } from "../../../store/comments";
 
-const LikeButton = ({ articlesLoading, currentArticle }) => {
+const LikeButtonComment = ({ commentsLoading, currentComment }) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [data, setData] = useState();
     const [likedUser, setLikedUser] = useState(false);
-    const isLoggedIn = useSelector(getIsLoggedIn());
     const currentUserId = useSelector(getCurrentUserId());
 
     useEffect(() => {
-        if (!articlesLoading && currentArticle && !data) {
-            setData(JSON.parse(JSON.stringify(currentArticle)));
+        if (!commentsLoading && currentComment && !data) {
+            setData(JSON.parse(JSON.stringify(currentComment)));
         }
         if (data && data.likedUsers.length > 0) {
             const expectedLikeFromUser =
@@ -26,9 +23,9 @@ const LikeButton = ({ articlesLoading, currentArticle }) => {
         } else {
             setLikedUser(false);
         }
-    }, [currentUserId, articlesLoading, currentArticle, data, likedUser]);
+    }, [currentUserId, commentsLoading, currentComment, data, likedUser]);
 
-    const toggleLikeArticle = () => {
+    const toggleLikeComment = () => {
         if (likedUser) {
             setLikedUser(false);
             const likedUsers = data.likedUsers.filter((id) => {
@@ -44,40 +41,28 @@ const LikeButton = ({ articlesLoading, currentArticle }) => {
                 ...updatedData
             }));
             dispatch(
-                updateArticle({
+                updateComment({
                     payload: updatedData,
-                    articleId: currentArticle._id
+                    commentId: currentComment._id
                 })
             );
         } else {
             setLikedUser(true);
             data.likedUsers.push(currentUserId);
             dispatch(
-                updateArticle({
+                updateComment({
                     payload: { ...data, likes: data.likedUsers.length },
-                    articleId: currentArticle._id
+                    commentId: currentComment._id
                 })
             );
         }
     };
 
-    if (!isLoggedIn) {
+    if (!commentsLoading && currentComment && data) {
         return (
             <button
                 className="btn btn-outline-danger"
-                onClick={() => navigate("/login")}
-            >
-                <i className={"bi bi-heart-fill"}>
-                    {` → ${data?.likedUsers.length}`}
-                </i>
-            </button>
-        );
-    }
-    if (!articlesLoading && currentArticle && data) {
-        return (
-            <button
-                className="btn btn-outline-danger"
-                onClick={toggleLikeArticle}
+                onClick={toggleLikeComment}
             >
                 <i className={`bi bi-heart${likedUser ? "-fill" : ""}`}>
                     {` ${data.likedUsers.length}`}
@@ -87,9 +72,9 @@ const LikeButton = ({ articlesLoading, currentArticle }) => {
     }
 };
 
-LikeButton.propTypes = {
-    articlesLoading: PropTypes.bool,
-    currentArticle: PropTypes.object
+LikeButtonComment.propTypes = {
+    commentsLoading: PropTypes.bool,
+    currentComment: PropTypes.object
 };
 
-export default LikeButton;
+export default LikeButtonComment;

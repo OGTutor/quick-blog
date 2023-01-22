@@ -27,6 +27,11 @@ const commentsSlice = createSlice({
             state.entities = state.entities.filter(
                 (c) => c._id !== action.payload
             );
+        },
+        commentUpdateSuccessfully: (state, action) => {
+            state.entities[
+                state.entities.findIndex((a) => a._id === action.payload._id)
+            ] = action.payload;
         }
     }
 });
@@ -37,11 +42,14 @@ const {
     commentsReceived,
     commentsRequestFailed,
     commentCreated,
-    commentRemoved
+    commentRemoved,
+    commentUpdateSuccessfully
 } = actions;
 
 const addCommentRequested = createAction("comments/addCommentRequested");
 const removeCommentRequested = createAction("comments/removeCommentRequested");
+const updateCommentFailed = createAction("comments/updateCommentFailed");
+const updateCommentRequested = createAction("comments/updateCommentRequested");
 
 export const loadCommentsList = (pageId) => async (dispatch) => {
     dispatch(commentsRequested());
@@ -74,6 +82,21 @@ export const removeComment = (commentId) => async (dispatch) => {
         dispatch(commentsRequestFailed(error.message));
     }
 };
+
+export const updateComment =
+    ({ payload, commentId }) =>
+    async (dispatch) => {
+        dispatch(updateCommentRequested());
+        try {
+            const { content } = await commentService.update({
+                payload,
+                commentId
+            });
+            dispatch(commentUpdateSuccessfully(content));
+        } catch (error) {
+            dispatch(updateCommentFailed(error.message));
+        }
+    };
 
 export const getComments = () => (state) => state.comments.entities;
 export const getCommentsLoadingStatus = () => (state) =>

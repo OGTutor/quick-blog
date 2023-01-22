@@ -26,9 +26,9 @@ const Comments = () => {
     const handleSubmit = (data) => {
         let updatedData;
         if (Array.isArray(data.content)) {
-            updatedData = { ...data, content: data.content[0] };
+            updatedData = { ...data, content: data.content[0], likes: 0 };
         } else {
-            updatedData = data;
+            updatedData = { ...data, likes: 0 };
         }
         dispatch(createComment({ ...updatedData, pageId: id }));
     };
@@ -47,6 +47,7 @@ const Comments = () => {
                         <CommentsList
                             comments={sortedComments}
                             onRemove={handleRemoveComment}
+                            commentsLoading={commentsLoading}
                         />
                     ) : (
                         "Loading..."

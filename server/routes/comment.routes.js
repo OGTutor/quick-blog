@@ -30,6 +30,28 @@ router
 		}
 	});
 
+router.patch('/:commentId', auth, async (req, res) => {
+	try {
+		const { commentId } = req.params;
+		const comment = req.body;
+
+		if (commentId && comment) {
+			const updatedComment = await Comment.findByIdAndUpdate(
+				commentId,
+				comment,
+				{ new: true }
+			);
+			res.send(updatedComment);
+		} else {
+			res.status(401).json({ message: 'Unauthorized' });
+		}
+	} catch (error) {
+		res
+			.status(500)
+			.json({ message: 'An error occurred on the server. Try it later!' });
+	}
+});
+
 router.delete('/:commentId', auth, async (req, res) => {
 	try {
 		const { commentId } = req.params;

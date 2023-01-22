@@ -4,16 +4,11 @@ import { displayDate } from "../../../utils/displayDate";
 import { useSelector } from "react-redux";
 import { getCurrentUserId, getUserById } from "../../../store/users";
 import config from "../../../config.json";
+import LikeButtonComment from "./likeButtonComment";
 
-const Comment = ({
-    content,
-    created_at: created,
-    _id: id,
-    userId,
-    onRemove
-}) => {
+const Comment = ({ comment, onRemove, commentsLoading }) => {
     const currentUserId = useSelector(getCurrentUserId());
-    const user = useSelector(getUserById(userId));
+    const user = useSelector(getUserById(comment.userId));
 
     return (
         <div className="bg-dark card-body mb-1 mt-1">
@@ -37,22 +32,30 @@ const Comment = ({
                                     <p className="text-white mb-1 mt-1">
                                         {user && `${user.name} `}
                                         <span className="small">
-                                            - {displayDate(created)}
+                                            - {displayDate(comment.created_at)}
                                         </span>
                                     </p>
-                                    {currentUserId === userId && (
+                                    {currentUserId === comment.userId && (
                                         <button
                                             className="btn btn-sm text-primary d-flex align-items-center"
-                                            onClick={() => onRemove(id)}
+                                            onClick={() =>
+                                                onRemove(comment._id)
+                                            }
                                         >
                                             <i className="bi bi-x-lg"></i>
                                         </button>
                                     )}
                                 </div>
                                 <p className="small mb-0 text-white">
-                                    {content}
+                                    {comment.content}
                                 </p>
                             </div>
+                        </div>
+                        <div className="text-white ms-5">
+                            <LikeButtonComment
+                                commentsLoading={commentsLoading}
+                                currentComment={comment}
+                            />
                         </div>
                     </div>
                 </div>
@@ -62,11 +65,9 @@ const Comment = ({
 };
 
 Comment.propTypes = {
-    content: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
-    created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    userId: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+    comment: PropTypes.object,
     onRemove: PropTypes.func,
-    _id: PropTypes.string
+    commentsLoading: PropTypes.bool
 };
 
 export default Comment;
