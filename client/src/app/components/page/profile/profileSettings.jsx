@@ -11,7 +11,7 @@ import FileList from "../../common/form/fileList";
 import TextAreaField from "../../common/form/textAreaField";
 import { updateDataUser } from "../../../utils/helpers";
 
-const Profile = () => {
+const ProfileSettings = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isLoading, setLoading] = useState(true);
@@ -213,4 +213,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default ProfileSettings;

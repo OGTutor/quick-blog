@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { getCurrentUserId, getUserById } from "../../../store/users";
 import config from "../../../config.json";
 import LikeButtonReply from "./likeButtonReply";
+import { NavLink } from "react-router-dom";
 
 const Reply = ({ reply, onRemove, repliesLoading }) => {
     const currentUserId = useSelector(getCurrentUserId());
@@ -16,17 +17,19 @@ const Reply = ({ reply, onRemove, repliesLoading }) => {
                 <div className="row">
                     <div className="col-6 col-sm-5">
                         <div className="d-flex flex-start">
-                            <img
-                                src={
-                                    user.avatar.name
-                                        ? user.avatar.name
-                                        : `${config.pathToCover}${user.avatar.path}`
-                                }
-                                className="rounded-circle me-3"
-                                alt="avatar"
-                                width="65"
-                                height="65"
-                            />
+                            <NavLink to={`/profile/page/user/${user._id}`}>
+                                <img
+                                    src={
+                                        user.avatar.name
+                                            ? user.avatar.name
+                                            : `${config.pathToCover}${user.avatar.path}`
+                                    }
+                                    className="rounded-circle me-3"
+                                    alt="avatar"
+                                    width="65"
+                                    height="65"
+                                />
+                            </NavLink>
                             <div className="flex-grow-1 flex-shrink-1">
                                 <div className="mb-4">
                                     <div className="d-flex justify-content-between align-items-center">

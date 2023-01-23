@@ -71,7 +71,7 @@ const NavBar = () => {
                                         <li className="nav-item">
                                             <NavLink
                                                 className="nav-link"
-                                                to={`/profile/user/${currentUser._id}`}
+                                                to={`/profile/page/user/${currentUser._id}`}
                                             >
                                                 Profile
                                             </NavLink>

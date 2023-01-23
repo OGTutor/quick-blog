@@ -77,7 +77,9 @@ const Replies = ({ commentId }) => {
                                 className={`bi bi-caret-${
                                     showRepliesList ? "up" : "down"
                                 }-fill`}
-                            ></i>
+                            >
+                                {sortedReplies.length}
+                            </i>
                         </button>
                     </div>
                     {showRepliesList ? (

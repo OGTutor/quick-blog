@@ -17,10 +17,10 @@ const ProtectedRoute = ({ children }) => {
     const currentUserId = useSelector(getCurrentUserId());
     const currentArticle = useSelector(loadArticleById(id));
 
-    if (currentUserId !== id && children.type.name === "Profile") {
+    if (currentUserId !== id && children.type.name === "ProfileSettings") {
         return (
             <Navigate
-                to={`/profile/user/${currentUserId}`}
+                to={`/profile/settings/user/${currentUserId}`}
                 state={{ from: location }}
             />
         );

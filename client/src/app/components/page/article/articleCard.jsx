@@ -7,9 +7,12 @@ import config from "../../../config.json";
 import LikeButton from "../../common/likeButton";
 import RandomArticles from "./randomArticles";
 import Modal from "../../common/modal";
+import { useSelector } from "react-redux";
+import { getUserById } from "../../../store/users";
 
 const ArticleCard = ({ article, articlesLoading, currentArticle }) => {
     const [modalActive, setModalActive] = useState(false);
+    const author = useSelector(getUserById(currentArticle.userId));
 
     return (
         <>
@@ -76,10 +79,55 @@ const ArticleCard = ({ article, articlesLoading, currentArticle }) => {
             </div>
             <hr className="myHr" />
             <div className="text-white ms-3">
-                <LikeButton
-                    articlesLoading={articlesLoading}
-                    currentArticle={currentArticle}
-                />
+                <div className="bg-dark card-body mb-1 mt-1">
+                    <div className="row">
+                        <div className="col">
+                            <div className="d-flex justify-content-between">
+                                {author && (
+                                    <>
+                                        <NavLink
+                                            to={`/profile/page/user/${author._id}`}
+                                        >
+                                            <img
+                                                src={
+                                                    author.avatar.name
+                                                        ? author.avatar.name
+                                                        : `${config.pathToCover}${author.avatar.path}`
+                                                }
+                                                className="rounded-circle me-3"
+                                                alt="avatar"
+                                                width="100"
+                                                height="100"
+                                            />
+                                        </NavLink>
+                                        <div className="flex-grow-1 flex-shrink-1">
+                                            <div className="mt-3">
+                                                <div className="d-flex justify-content-between align-items-center">
+                                                    <p className="text-white mb-1 mt-1">
+                                                        {author &&
+                                                            `${author.name} `}
+                                                        <p className="text-white mb-1 mt-1 font-monospace">
+                                                            Posted -{" "}
+                                                            {displayDate(
+                                                                currentArticle.created_at
+                                                            )}
+                                                        </p>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
+                                <div className="me-3 mt-4">
+                                    <LikeButton
+                                        articlesLoading={articlesLoading}
+                                        currentArticle={currentArticle}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <hr className="myHr" />
         </>

@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import NavBar from "./components/ui/navBar";
 import Home from "./layouts/home";
 import UserArticles from "./layouts/userArticles";
-import Profile from "./components/page/profile";
+import ProfileSettings from "./components/page/profile/profileSettings";
 import ArticlePage from "./components/page/article";
 import AddArticle from "./layouts/addArticle";
 import NotFound from "./layouts/notFound";
@@ -15,6 +15,7 @@ import AuthLoader from "./components/ui/hoc/authLoader";
 import EditArticle from "./layouts/editArticle";
 import ProtectedRoute from "./components/common/protectedRoute";
 import { SkeletonTheme } from "react-loading-skeleton";
+import ProfilePage from "./components/page/profile/profilePage";
 
 const App = () => {
     return (
@@ -57,10 +58,14 @@ const App = () => {
                                 }
                             />
                             <Route
-                                path="profile/user/:id"
+                                path="profile/page/user/:id"
+                                element={<ProfilePage />}
+                            />
+                            <Route
+                                path="profile/settings/user/:id"
                                 element={
                                     <ProtectedRoute>
-                                        <Profile />
+                                        <ProfileSettings />
                                     </ProtectedRoute>
                                 }
                             />
