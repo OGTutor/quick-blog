@@ -98,7 +98,7 @@ const SortingElements = ({
                         <i className="bi bi-search"></i>
                     </a>
                 </div>
-                <div className="d-flex flex-row">
+                <div className="d-flex flex-row search-box-buttons">
                     <div
                         className="btn btn-outline-secondary p-2 ms-3 mt-3"
                         onClick={handleSortByAllArticles}

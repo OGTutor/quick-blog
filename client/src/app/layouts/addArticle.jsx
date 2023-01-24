@@ -40,17 +40,42 @@ const AddArticle = () => {
             min: {
                 message: "Title must contain at least 3 characters!",
                 value: 3
+            },
+            max: {
+                message: "The title can contain a maximum of 15 characters!",
+                value: 15
             }
         },
         content: {
-            isRequired: { message: "Content cannot be empty" },
+            isRequired: { message: "Content cannot be empty!" },
             min: {
                 message: "Content must contain at least 50 characters!",
                 value: 50
+            },
+            max: {
+                message: "Content can contain a maximum of 1000 characters!",
+                value: 1000
             }
         },
         cover: {
-            isRequired: { message: "Content cannot be empty" }
+            isRequired: { message: "Cover is required!" }
+        },
+        description: {
+            max: {
+                message: "Description can contain a maximum of 40 characters!",
+                value: 40
+            }
+        },
+        themes: {
+            isRequired: { message: "Themes is required!" },
+            min: {
+                message: "Themes must contain at least 3 characters!",
+                value: 3
+            },
+            max: {
+                message: "Themes can contain a maximum of 20 characters!",
+                value: 40
+            }
         }
     };
 
@@ -110,6 +135,7 @@ const AddArticle = () => {
                                             name="description"
                                             value={data.description}
                                             onChange={handleChange}
+                                            error={errors.description}
                                         />
                                     </div>
                                     <TextAreaField
@@ -125,6 +151,7 @@ const AddArticle = () => {
                                             name="themes"
                                             value={data.themes}
                                             onChange={handleChange}
+                                            error={errors.themes}
                                         />
                                     </div>
                                     <p className="title text-white">
@@ -142,7 +169,7 @@ const AddArticle = () => {
                                     <button
                                         type="submit"
                                         disabled={!isValid}
-                                        className="btn btn-primary"
+                                        className="btn btn-primary mb-3"
                                     >
                                         Publish
                                     </button>

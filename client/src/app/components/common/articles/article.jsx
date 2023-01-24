@@ -8,7 +8,7 @@ import LikeButton from "../likeButton";
 const Article = ({ article, articlesLoading, goToArticlePage }) => {
     return (
         <div className="d-flex justify-content-center">
-            <div className="card mb-3 mt-3 bg-dark" style={{ width: "70rem" }}>
+            <div className="card mb-3 mt-3 bg-dark container-article">
                 <img
                     src={`${config.pathToCover}${article.cover.path}`}
                     className="card-img-top"

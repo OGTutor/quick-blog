@@ -14,23 +14,16 @@ const RandomArticles = () => {
 
     if (!articlesLoading && articles?.length > 0) {
         return (
-            <div
-                className="container text-center mt-home"
-                style={{ width: "72rem" }}
-            >
+            <div className="container text-center mt-home container-random-article">
                 <div className="row">
                     {randomArticles.map((a) => (
-                        <div key={a._id} className="col m-1">
+                        <div key={a._id} className="col m-1 random-article">
                             <div className="card bg-dark">
                                 <NavLink to={`/article/${a._id}`}>
                                     <img
                                         src={`${config.pathToCover}${a.cover.path}`}
-                                        className="card-img-top"
+                                        className="card-img-top random-article-img"
                                         alt="cover"
-                                        style={{
-                                            maxWidth: "350px",
-                                            maxHeight: "350px"
-                                        }}
                                     />
                                 </NavLink>
                                 <div className="card-body fw-bold">

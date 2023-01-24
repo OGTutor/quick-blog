@@ -21,7 +21,7 @@ const TextAreaField = ({ label, name, value, onChange, error }) => {
                     onChange={handleChange}
                     className={getInputClasses()}
                     placeholder={label}
-                    maxLength={name === "content" ? "1000" : "200"}
+                    maxLength={name === "content" ? "1050" : "250"}
                 />
                 {error && <div className="invalid-feedback">{error}</div>}
             </div>

@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { getCurrentUserData, getIsLoggedIn } from "../../store/users";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    getCurrentUserData,
+    getIsLoggedIn,
+    getUsersList
+} from "../../store/users";
 import config from "../../config.json";
 
 const UserCard = () => {
+    const dispatch = useDispatch();
     const isLoggedIn = useSelector(getIsLoggedIn());
     const currentUser = useSelector(getCurrentUserData());
     const navigate = useNavigate();
+
+    useEffect(() => {
+        dispatch(getUsersList());
+    }, [isLoggedIn]);
 
     const handleGoToUserArticles = () => {
         navigate(`/articles/user/${currentUser._id}`);
@@ -139,7 +148,7 @@ const UserCard = () => {
                         </div>
                         <hr className="mb-3" />
                         {currentUser.biography ? (
-                            <div className="card-body d-flex flex-column align-items-center text-center position-relative border border-secondary border-2 rounded me-3 ms-3 mb-5">
+                            <div className="card-body align-items-center text-center position-relative border border-secondary border-2 rounded m-4">
                                 <p className="card-text fw-light text-white">
                                     {currentUser.biography}
                                 </p>

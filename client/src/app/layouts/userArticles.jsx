@@ -113,7 +113,11 @@ const UserArticles = () => {
                                                     </p>
                                                     <div className="card-body align-items-center text-center position-relative border border-secondary border-2 rounded mb-3">
                                                         <p className="card-text text-white">
-                                                            {a.content}
+                                                            {a.content.substr(
+                                                                0,
+                                                                500
+                                                            )}
+                                                            ...
                                                         </p>
                                                     </div>
                                                     <p className="card-text">

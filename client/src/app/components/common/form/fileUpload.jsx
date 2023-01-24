@@ -11,6 +11,12 @@ const FileUpload = ({ name, onChange, error }) => {
         onChange({ name, value: target.files[0] });
     };
 
+    const getInputClasses = () => {
+        return (
+            "bg-secondary text-dark form-control" + (error ? " is-invalid" : "")
+        );
+    };
+
     const dragStartHandler = (e) => {
         e.preventDefault();
         setDrag(true);
@@ -27,38 +33,43 @@ const FileUpload = ({ name, onChange, error }) => {
 
     return (
         <>
-            <div
-                className="drop-area"
-                onDragStart={(e) => dragStartHandler(e)}
-                onDragLeave={(e) => dragLeaveHandler(e)}
-                onDragOver={(e) => dragStartHandler(e)}
-                onDrop={(e) => onDropHandler(e)}
-            >
-                <div className="file-card">
-                    <div className="file-inputs">
-                        <input
-                            type="file"
-                            name={name}
-                            onChange={handleChange}
-                        />
-                        <button>
-                            <i>
-                                <FontAwesomeIcon icon={faPlus} />
-                            </i>
-                            Upload
-                        </button>
-                    </div>
-                    {drag ? (
-                        <p className="main">Drop image to upload</p>
-                    ) : (
-                        <p className="main">Drag and drop image to upload</p>
-                    )}
+            <div className="has-validation">
+                <div
+                    className="drop-area"
+                    onDragStart={(e) => dragStartHandler(e)}
+                    onDragLeave={(e) => dragLeaveHandler(e)}
+                    onDragOver={(e) => dragStartHandler(e)}
+                    onDrop={(e) => onDropHandler(e)}
+                >
+                    <div className="file-card">
+                        <div className="file-inputs">
+                            <input
+                                type="file"
+                                name={name}
+                                className={getInputClasses()}
+                                onChange={handleChange}
+                            />
+                            <button>
+                                <i>
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </i>
+                                Upload
+                            </button>
+                        </div>
+                        {drag ? (
+                            <p className="main">Drop image to upload</p>
+                        ) : (
+                            <p className="main">
+                                Drag and drop image to upload
+                            </p>
+                        )}
 
-                    <p className="main">Support files</p>
-                    <p className="info">PNG, JPEG, JPG</p>
+                        <p className="main">Support files</p>
+                        <p className="info">PNG, JPEG, JPG</p>
+                    </div>
                 </div>
+                {error && <div className="invalid-feedback-file">{error}</div>}
             </div>
-            {error && <div className="invalid-feedback">{error}</div>}
         </>
     );
 };

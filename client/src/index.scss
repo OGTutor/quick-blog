@@ -15,6 +15,25 @@ code {
         monospace;
 }
 
+.container {
+    max-width: 100%;
+}
+
+.container-random-article {
+    width: 72rem;
+    .random-article {
+        max-width: 450px;
+        max-height: 450px;
+        .random-article-img {
+            max-width: 350px;
+            max-height: 350px;
+        }
+    }
+}
+.container-article {
+    width: 70rem;
+}
+
 .ms-adding-article {
     margin-left: ($spacer * 46) !important;
 }
@@ -150,7 +169,7 @@ code {
     top: 0;
     left: 0;
     height: 80px;
-    width: 100%;
+    max-width: 100%;
     .search-box {
         position: fixed;
         top: -3px;
@@ -205,7 +224,6 @@ code {
         background: #2f3640;
         height: 40px;
         border-radius: 40px;
-        z-index: 100;
         .search-btn-user-articles {
             color: #1da1f3;
             float: right;
@@ -239,8 +257,92 @@ code {
     padding: 0 6px;
 }
 
+.invalid-feedback-file {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: var(--bs-danger-text);
+}
+
 @media screen and (max-width: 1900px) {
     .user-card {
         display: none;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .container {
+        max-width: 970px;
+        .user-card {
+            display: none;
+        }
+    }
+}
+@media screen and (max-width: 992px) {
+    .container {
+        max-width: 750px;
+        .search-box-bg {
+            max-width: 750px;
+            .search-box {
+                left: 60%;
+            }
+        }
+        .container-random-article {
+            max-width: 750px;
+            .random-article {
+                position: relative;
+                left: 0;
+                max-width: 350px;
+                max-height: 350px;
+                .random-article-img {
+                    max-width: 250px;
+                    max-height: 250px;
+                }
+            }
+        }
+        .container-article {
+            max-width: 54rem;
+            position: absolute;
+            left: 0;
+            top: auto;
+        }
+        .user-card {
+            display: none;
+        }
+    }
+}
+@media screen and (max-width: 767px) {
+    .container {
+        max-width: none;
+        .search-box-bg {
+            max-width: none;
+            .search-box {
+                left: 60%;
+            }
+        }
+        .container-random-article {
+            width: none;
+            .random-article {
+                position: relative;
+                left: 10px;
+                max-width: 250px;
+                max-height: 250px;
+                .random-article-img {
+                    max-width: 150px;
+                    max-height: 150px;
+                }
+            }
+        }
+        .container-article {
+            width: 44rem;
+            position: absolute;
+            left: 50px;
+            top: auto;
+        }
+        .user-card {
+            display: none;
+        }
     }
 }

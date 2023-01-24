@@ -159,7 +159,7 @@ const ProfilePage = () => {
                                 </div>
                                 <hr className="mb-3" />
                                 {user.biography ? (
-                                    <div className="card-body d-flex flex-column align-items-center text-center position-relative border border-secondary border-2 rounded me-3 ms-3 mb-5 mt-5">
+                                    <div className="card-body align-items-center text-center position-relative border border-secondary border-2 rounded m-4">
                                         <p className="card-text fw-light text-white">
                                             {user.biography}
                                         </p>

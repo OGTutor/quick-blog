@@ -54,7 +54,27 @@ const ProfileSettings = () => {
             isEmail: { message: "Email entered incorrectly!" }
         },
         name: {
-            isRequired: { message: "Name is required!" }
+            isRequired: { message: "Name is required!" },
+            min: {
+                message: "Name must contain at least 3 characters!",
+                value: 3
+            },
+            max: {
+                message: "Name can contain a maximum of 15 characters!",
+                value: 15
+            }
+        },
+        typeOfBlog: {
+            max: {
+                message: "Type of blog can contain a maximum of 10 characters!",
+                value: 10
+            }
+        },
+        biography: {
+            max: {
+                message: "Biography can contain a maximum of 200 characters!",
+                value: 200
+            }
         }
     };
 
